@@ -1,6 +1,6 @@
-package com.example.example_mod.mixin;
+package io.github.anonymous123_code.potion_mod.mixin;
 
-import com.example.example_mod.ExampleMod;
+import io.github.anonymous123_code.potion_mod.PotionMod;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TitleScreenMixin {
 	@Inject(method = "init", at = @At("TAIL"))
 	public void onInit(CallbackInfo ci) {
-		ExampleMod.LOGGER.info("This line is printed by an example mod mixin!");
+		PotionMod.LOGGER.info("This line is printed by an example mod mixin!");
 	}
 }

@@ -1,3 +1,8 @@
+# Potion Mod
+temporary name
+
+template readme:
+
 # Quilt Template Mod
 
 The official Quilt template Mod. You can use it as a template for your own mods!
