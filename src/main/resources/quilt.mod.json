@@ -7,6 +7,7 @@
 		"metadata": {
 			"name": "Potion Mod",
 			"description": "A short description of your mod.",
+			"license": "LGPL-2.1-only",
 			"contributors": {
 				"anonymous123-code": "Owner"
 			},
