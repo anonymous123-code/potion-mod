@@ -64,7 +64,93 @@ Evaluate
 (Brainfuck without io)
 
 ##### The structure:
+```
 [0]: The length of the input programm
-[1 to [0] (exclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = [; 5 = ]
-[0 to a(known when I wrote the code)]: The storage for the code
+[1 to [0] (inclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = ]; 5 = [
+[[0]+1 to a(known when I wrote the code)]: The storage for the code
+    pointer index (always >=0)
+    pointer to code
+    counter of closing brackets
+    parsing code:
+        handles <>-+[ and conditional part of ]
+    bracket match searcher
 [a until technical limit]: The "tape"
+```
+```
+Evaluate
+    Store
+        Amount 0
+        Amount 3
+    // Code: [-]
+    Store
+        Amount 1
+        Amount 5
+    Store
+        Amount 2
+        Amount 2
+    Store
+        Amount 3
+        Amount 4
+    // Interpreter
+    // index pointer
+    Store
+        Amount
+            Amount 1
+            Retrieve
+                Amount 0
+        Amount 0
+    // code pointer
+    Store
+        Amount
+            Amount 2
+            Retrieve
+                Amount 0
+        Amount 0
+    // brackets counter
+    Store
+        Amount
+            Amount 3
+            Retrieve
+                Amount 0
+        Amount 0
+    Store
+        Amount
+            Amount 4
+            Retrieve
+                Amount 0
+        Escape
+            Evaluate
+                Evaluate
+                    Select
+                        // retrieve char at pointer position
+                        Retrieve
+                            Amount
+                                Amount 1
+                                Retrieve
+                                    Amount
+                                        Amount 2
+                                        Retrieve
+                                            Amount 0
+                        Escape
+                            S
+
+                Evaluate
+                    Select
+                        // 0 when code pointer == length, and evaluation is finished
+                        Negativity
+                            Retrieve
+                                Amount 0
+                            Retrieve
+                                Amount
+                                    Amount 2
+                                    Retrieve
+                                        Amount 0
+                        // if finished, stop recursion
+                        Evaluate
+                        // This function
+                        Retrieve
+                            Amount
+                                Amount 4
+                                Retrieve
+                                    Amount 0
+```
