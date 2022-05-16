@@ -133,34 +133,49 @@ Evaluate
                                             Amount 0
                         // If 0: <
                         Escape
-                            Select
-                                // based on mem pointer
-                                Retrieve
-                                    Amount
-                                        Amount 1
-                                        Retrieve
-                                            Amount 0
-                                // if pointer is 0, do nothing
-                                Evaluate
-                                // Else
-                                Escape
-                                    Store
-                                        // at the mem pointer
+                            Evaluate
+                                Select
+                                    // based on mem pointer
+                                    Retrieve
                                         Amount
                                             Amount 1
                                             Retrieve
                                                 Amount 0
-                                        Negativity
-                                            // get mem pointer val
-                                            Retrieve
-                                                Amount
-                                                    Amount 1
-                                                    Retrieve
-                                                        Amount 0
-                                            // And substract 1
-                                            Amount 1
+                                    // if pointer is 0, do nothing
+                                    Evaluate
+                                    // Else
+                                    Escape
+                                        Store
+                                            // at the mem pointer
+                                            Amount
+                                                Amount 1
+                                                Retrieve
+                                                    Amount 0
+                                            Negativity
+                                                // get mem pointer val
+                                                Retrieve
+                                                    Amount
+                                                        Amount 1
+                                                        Retrieve
+                                                            Amount 0
+                                                // And substract 1
+                                                Amount 1
+
                         // If 1: >
                         Escape
+                            Store
+                                Amount
+                                    Amount 1
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
                         // If 2: -
                         Escape
                         // If 3: +
@@ -168,6 +183,7 @@ Evaluate
                         // If 4 [
                         Escape
                         // If 5 ]
+                        Escape
 
 
                 Evaluate
