@@ -234,6 +234,12 @@ Evaluate
                         Evaluate
                         // If 5 ]
                         Escape
+                            Evaluate
+                                Retrieve
+                                    Amount
+                                        Amount 5
+                                        Retrieve
+                                            Amount 0
 
                 // increase code pointer
                 Store
@@ -289,25 +295,63 @@ Evaluate
                         Evaluate
                         Evaluate
                         Escape // [
-                        Escape // ]
-
-                Evaluate
-                    Select
-                        // 0 when code pointer == length, and evaluation is finished // TODO
-                        Negativity
-                            Retrieve
-                                Amount 0
-                            Retrieve
+                            // decrease brackets counter
+                            Store
                                 Amount
-                                    Amount 2
+                                    Amount 3
                                     Retrieve
                                         Amount 0
-                        // if finished, stop recursion
-                        Evaluate
+                                Negativity
+                                    Retrieve
+                                        Amount
+                                            Amount 3
+                                            Retrieve
+                                                Amount 0
+                                    Amount 1
+
+                        Escape // ]
+                            // increase brackets counter
+                            Store
+                                Amount
+                                    Amount 3
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    Retrieve
+                                        Amount
+                                            Amount 3
+                                            Retrieve
+                                                Amount 0
+                // decrease code pointer
+                Store
+                    Amount
+                        Amount 2
+                        Retrieve
+                            Amount 0
+                    Negativity
+                        Retrieve
+                            Amount
+                                Amount 2
+                                Retrieve
+                                    Amount 0
+                        Amount 1
+                Evaluate
+                    Select
+                        // Bracket Counter is -1 when allowed to run
+                        Amount
+                            Amount 1
+                            Retrieve
+                                Amount
+                                    Amount 3
+                                    Retrieve
+                                        Amount 0
                         // This function
                         Retrieve
                             Amount
-                                Amount 4
+                                Amount 5
                                 Retrieve
                                     Amount 0
+                        // if finished, stop recursion
+                        Evaluate
 ```
