@@ -58,7 +58,7 @@ Evaluate
                             Amount 1
                         Retrieve
                             Amount 0
-                        Execute
+                        Evaluate
 ```
 ### A P interpreter:
 (Brainfuck without io)
@@ -230,12 +230,24 @@ Evaluate
                                                         Amount 0
                                             Retrieve
                                                 Amount 0
-                        // If 4 [
-                        Escape
+                        // If 4 [ ignore this function handles no jumping
+                        Evaluate
                         // If 5 ]
                         Escape
 
-
+                // increase code pointer
+                Store
+                    Amount
+                        Amount 2
+                        Retrieve
+                            Amount 0
+                    Amount
+                        Amount 1
+                        Retrieve
+                            Amount
+                                Amount 2
+                                Retrieve
+                                    Amount 0
                 Evaluate
                     Select
                         // 0 when code pointer == length, and evaluation is finished
@@ -255,4 +267,11 @@ Evaluate
                                 Amount 4
                                 Retrieve
                                     Amount 0
+    Store
+        Amount
+            Amount 4
+            Retrieve
+                Amount 0
+        Escape
+            Evaluate
 ```
