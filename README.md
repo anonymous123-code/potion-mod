@@ -40,7 +40,7 @@ The first essence serves as an operator. The following operators are defined:
  - Retrieving: State with one param, returns the value stored at the index given by the param
  - Storing: State with two params, stores the second param at the index given by the first param, returns the value
  - void: execute with
- - Amount: returns `1` if no param, else `sum of all params + 1`
+ - Amount: returns `1` if no param, else `sum of all params`
  - Negativity: returns `-1` if no param, `-param` if 1 param, else `first param - sum of all other params`
 
 Examples:
@@ -66,7 +66,7 @@ Evaluate
 ##### The structure:
 ```
 [0]: The length of the input programm
-[1 to [0] (inclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = ]; 5 = [
+[1 to [0] (inclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = [; 5 = ]
 [[0]+1 to a(known when I wrote the code)]: The storage for the code
     pointer index (always >=0)
     pointer to code
@@ -84,13 +84,13 @@ Evaluate
     // Code: [-]
     Store
         Amount 1
-        Amount 5
+        Amount 4
     Store
         Amount 2
         Amount 2
     Store
         Amount 3
-        Amount 4
+        Amount 5
     // Interpreter
     // index pointer
     Store
@@ -131,8 +131,44 @@ Evaluate
                                         Amount 2
                                         Retrieve
                                             Amount 0
+                        // If 0: <
                         Escape
-                            S
+                            Select
+                                // based on mem pointer
+                                Retrieve
+                                    Amount
+                                        Amount 1
+                                        Retrieve
+                                            Amount 0
+                                // if pointer is 0, do nothing
+                                Evaluate
+                                // Else
+                                Escape
+                                    Store
+                                        // at the mem pointer
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                        Negativity
+                                            // get mem pointer val
+                                            Retrieve
+                                                Amount
+                                                    Amount 1
+                                                    Retrieve
+                                                        Amount 0
+                                            // And substract 1
+                                            Amount 1
+                        // If 1: >
+                        Escape
+                        // If 2: -
+                        Escape
+                        // If 3: +
+                        Escape
+                        // If 4 [
+                        Escape
+                        // If 5 ]
+
 
                 Evaluate
                     Select
