@@ -1,0 +1,277 @@
+Evaluate
+    Store
+        Amount 0
+        Amount 3
+    // Code: [-]
+    Store
+        Amount 1
+        Amount 4
+    Store
+        Amount 2
+        Amount 2
+    Store
+        Amount 3
+        Amount 5
+    // Interpreter
+    // index pointer
+    Store
+        Amount
+            Amount 1
+            Retrieve
+                Amount 0
+        Amount 0
+    // code pointer
+    Store
+        Amount
+            Amount 2
+            Retrieve
+                Amount 0
+        Amount 0
+    // brackets counter
+    Store
+        Amount
+            Amount 3
+            Retrieve
+                Amount 0
+        Amount 0
+    Store
+        Amount
+            Amount 4
+            Retrieve
+                Amount 0
+        Escape
+            Evaluate
+                Evaluate
+                    Select
+                        // retrieve char at pointer position
+                        Retrieve
+                            Amount
+                                Amount 1
+                                Retrieve
+                                    Amount
+                                        Amount 2
+                                        Retrieve
+                                            Amount 0
+                        // If 0: <
+                        Escape
+                            Evaluate
+                                Select
+                                    // based on mem pointer
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                    // if pointer is 0, do nothing
+                                    Evaluate
+                                    // Else
+                                    Escape
+                                        Store
+                                            // at the mem pointer
+                                            Amount
+                                                Amount 1
+                                                Retrieve
+                                                    Amount 0
+                                            Negativity
+                                                // get mem pointer val
+                                                Retrieve
+                                                    Amount
+                                                        Amount 1
+                                                        Retrieve
+                                                            Amount 0
+                                                // And substract 1
+                                                Amount 1
+
+                        // If 1: >
+                        Escape
+                            Store
+                                Amount
+                                    Amount 1
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                        // If 2: -
+                        Escape
+                            Store
+                                Amount
+                                    Amount 6
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                    Retrieve
+                                        Amount 0
+                                Negativity
+                                    // get mem val
+                                    Retrieve
+                                        Amount
+                                            Amount 6
+                                            // get mem pointer val
+                                            Retrieve
+                                                Amount
+                                                    Amount 1
+                                                    Retrieve
+                                                        Amount 0
+                                            Retrieve
+                                                Amount 0
+                                    Amount 1
+                        // If 3: +
+                        Escape
+                            Store
+                                Amount
+                                    Amount 6
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    // get mem val
+                                    Retrieve
+                                        Amount
+                                            Amount 6
+                                            // get mem pointer val
+                                            Retrieve
+                                                Amount
+                                                    Amount 1
+                                                    Retrieve
+                                                        Amount 0
+                                            Retrieve
+                                                Amount 0
+                        // If 4 [ ignore this function handles no jumping
+                        Evaluate
+                        // If 5 ]
+                        Escape
+                            Evaluate
+                                Retrieve
+                                    Amount
+                                        Amount 5
+                                        Retrieve
+                                            Amount 0
+
+                // increase code pointer
+                Store
+                    Amount
+                        Amount 2
+                        Retrieve
+                            Amount 0
+                    Amount
+                        Amount 1
+                        Retrieve
+                            Amount
+                                Amount 2
+                                Retrieve
+                                    Amount 0
+                Evaluate
+                    Select
+                        // 0 when code pointer == length, and evaluation is finished
+                        Negativity
+                            Retrieve
+                                Amount 0
+                            Retrieve
+                                Amount
+                                    Amount 2
+                                    Retrieve
+                                        Amount 0
+                        // if finished, stop recursion
+                        Evaluate
+                        // This function
+                        Retrieve
+                            Amount
+                                Amount 4
+                                Retrieve
+                                    Amount 0
+    Store
+        Amount
+            Amount 4
+            Retrieve
+                Amount 0
+        Escape
+            Evaluate
+                Evaluate
+                    Select
+                        Retrieve
+                            Amount
+                                Amount 1
+                                Retrieve
+                                    Amount
+                                        Amount 2
+                                        Retrieve
+                                            Amount 0
+                        Evaluate
+                        Evaluate
+                        Evaluate
+                        Evaluate
+                        Escape // [
+                            // decrease brackets counter
+                            Store
+                                Amount
+                                    Amount 3
+                                    Retrieve
+                                        Amount 0
+                                Negativity
+                                    Retrieve
+                                        Amount
+                                            Amount 3
+                                            Retrieve
+                                                Amount 0
+                                    Amount 1
+
+                        Escape // ]
+                            // increase brackets counter
+                            Store
+                                Amount
+                                    Amount 3
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    Retrieve
+                                        Amount
+                                            Amount 3
+                                            Retrieve
+                                                Amount 0
+                // decrease code pointer
+                Store
+                    Amount
+                        Amount 2
+                        Retrieve
+                            Amount 0
+                    Negativity
+                        Retrieve
+                            Amount
+                                Amount 2
+                                Retrieve
+                                    Amount 0
+                        Amount 1
+                Evaluate
+                    Select
+                        // Bracket Counter is -1 when allowed to run
+                        Amount
+                            Amount 1
+                            Retrieve
+                                Amount
+                                    Amount 3
+                                    Retrieve
+                                        Amount 0
+                        // This function
+                        Retrieve
+                            Amount
+                                Amount 5
+                                Retrieve
+                                    Amount 0
+                        // if finished, stop recursion
+                        Evaluate
