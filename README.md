@@ -274,4 +274,40 @@ Evaluate
                 Amount 0
         Escape
             Evaluate
+                Evaluate
+                    Select
+                        Retrieve
+                            Amount
+                                Amount 1
+                                Retrieve
+                                    Amount
+                                        Amount 2
+                                        Retrieve
+                                            Amount 0
+                        Evaluate
+                        Evaluate
+                        Evaluate
+                        Evaluate
+                        Escape // [
+                        Escape // ]
+
+                Evaluate
+                    Select
+                        // 0 when code pointer == length, and evaluation is finished // TODO
+                        Negativity
+                            Retrieve
+                                Amount 0
+                            Retrieve
+                                Amount
+                                    Amount 2
+                                    Retrieve
+                                        Amount 0
+                        // if finished, stop recursion
+                        Evaluate
+                        // This function
+                        Retrieve
+                            Amount
+                                Amount 4
+                                Retrieve
+                                    Amount 0
 ```
