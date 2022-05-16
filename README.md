@@ -67,7 +67,7 @@ Evaluate
 ```
 [0]: The length of the input programm
 [1 to [0] (inclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = [; 5 = ]
-[[0]+1 to a(known when I wrote the code)]: The storage for the code
+[[0]+1 to a([0]+1+5)]: The storage for the code
     pointer index (always >=0)
     pointer to code
     counter of closing brackets
@@ -178,8 +178,58 @@ Evaluate
                                                 Amount 0
                         // If 2: -
                         Escape
+                            Store
+                                Amount
+                                    Amount 6
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                    Retrieve
+                                        Amount 0
+                                Negativity
+                                    // get mem val
+                                    Retrieve
+                                        Amount
+                                            Amount 6
+                                            // get mem pointer val
+                                            Retrieve
+                                                Amount
+                                                    Amount 1
+                                                    Retrieve
+                                                        Amount 0
+                                            Retrieve
+                                                Amount 0
+                                    Amount 1
                         // If 3: +
                         Escape
+                            Store
+                                Amount
+                                    Amount 6
+                                    // get mem pointer val
+                                    Retrieve
+                                        Amount
+                                            Amount 1
+                                            Retrieve
+                                                Amount 0
+                                    Retrieve
+                                        Amount 0
+                                Amount
+                                    Amount 1
+                                    // get mem val
+                                    Retrieve
+                                        Amount
+                                            Amount 6
+                                            // get mem pointer val
+                                            Retrieve
+                                                Amount
+                                                    Amount 1
+                                                    Retrieve
+                                                        Amount 0
+                                            Retrieve
+                                                Amount 0
                         // If 4 [
                         Escape
                         // If 5 ]
