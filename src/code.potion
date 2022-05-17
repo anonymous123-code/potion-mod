@@ -196,7 +196,7 @@ Evaluate
                                     Amount 0
     Store
         Amount
-            Amount 4
+            Amount 5
             Retrieve
                 Amount 0
         Escape
@@ -275,3 +275,9 @@ Evaluate
                                     Amount 0
                         // if finished, stop recursion
                         Evaluate
+    Evaluate
+        Retrieve
+            Amount
+                Amount 5
+                Retrieve
+                    Amount 0
