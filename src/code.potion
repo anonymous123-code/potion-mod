@@ -2,15 +2,30 @@ Evaluate
     Store
         Amount 0
         Amount 3
-    // Code: [-]
+    // Code: ++[>-<-]
     Store
         Amount 1
-        Amount 4
+        Amount 3
     Store
         Amount 2
-        Amount 2
+        Amount 3
     Store
         Amount 3
+        Amount 4
+    Store
+        Amount 4
+        Amount 0
+    Store
+        Amount 5
+        Amount 2
+    Store
+        Amount 6
+        Amount 1
+    Store
+        Amount 7
+        Amount 2
+    Store
+        Amount 8
         Amount 5
     // Interpreter
     // index pointer
