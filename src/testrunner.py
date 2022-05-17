@@ -44,7 +44,6 @@ def function_amount(lines: [str], own_line: str, tab_size: int):
             return {"type": "void"}
 
 
-
 def function_escape(lines: [str], own_line: str, tab_size: int):
     return {
         "type": "escaped_data",
@@ -54,11 +53,34 @@ def function_escape(lines: [str], own_line: str, tab_size: int):
 
 
 def function_select(lines: [str], own_line: str, tab_size: int):
-    pass
+    params = get_args(lines, tab_size)
+    if len(params) < 2:
+        return {"type": "void"}
 
 
 def function_negativity(lines: [str], own_line: str, tab_size: int):
-    pass
+    params = get_args(lines, tab_size)
+    if len(params) == 0:
+        return {
+            "type": "amount",
+            "value": -1
+        }
+    elif len(params) == 1:
+        if params[0]["type"] == "amount":
+            return {
+                "type": "amount",
+                "value": -params[0]["value"]
+            }
+        else:
+            return {"type": "void"}
+    else:
+        result = params[0]
+        for param in params[1:]:
+            if param["type"] == "amount":
+                result -= param["value"]
+            else:
+                return {"type": "void"}
+        return result
 
 
 def get_args(lines: [str], tab_size: int):
