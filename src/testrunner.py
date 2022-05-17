@@ -7,7 +7,6 @@ def function_evaluate(lines: [str], own_line: str, tab_size: int):
         return {"type": "void"}
     result = []
     for arg in args:
-        print(arg)
         if arg["type"] == "escaped_data":
             result.append(get_args(arg["lines"], arg["tab_size"]))
         else:
@@ -27,7 +26,6 @@ storage = {}
 def function_store(lines: [str], own_line: str, tab_size: int):
     global storage
     args = get_args(lines, tab_size)
-    print(args)
     if len(args) != 2:
         return {"type": "void"}
     elif args[0]["type"] != "amount" or args[0]["value"] < 0:
@@ -79,6 +77,10 @@ def function_escape(lines: [str], own_line: str, tab_size: int):
 def function_select(lines: [str], own_line: str, tab_size: int):
     params = get_args(lines, tab_size)
     if len(params) < 2:
+        return {"type": "void"}
+    if params[0]["type"] == "amount":
+        return params[max(min(params[0] + 1, len(params) - 1), 1)]
+    else:
         return {"type": "void"}
 
 
@@ -133,7 +135,6 @@ functions = {"evaluate": function_evaluate, "store": function_store, "amount": f
 def parse_file(lines: [str]):
     tab_size = -2
     lines_without_newlines = [line.rstrip("\n") for line in lines]
-    print(lines_without_newlines)
 
     for line in lines:
         if line.startswith("//"):
