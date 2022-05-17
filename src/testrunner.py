@@ -106,7 +106,10 @@ def function_negativity(lines: [str], own_line: str, tab_size: int):
                 result -= param["value"]
             else:
                 return {"type": "void"}
-        return result
+        return {
+            "type": "amount",
+            "value": result
+        }
 
 
 def get_args(lines: [str], tab_size: int):
