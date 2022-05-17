@@ -79,7 +79,7 @@ def function_select(lines: [str], own_line: str, tab_size: int):
     if len(params) < 2:
         return {"type": "void"}
     if params[0]["type"] == "amount":
-        return params[max(min(params[0] + 1, len(params) - 1), 1)]
+        return params[max(min(params[0]["value"] + 1, len(params) - 1), 1)]
     else:
         return {"type": "void"}
 
@@ -100,7 +100,7 @@ def function_negativity(lines: [str], own_line: str, tab_size: int):
         else:
             return {"type": "void"}
     else:
-        result = params[0]
+        result = params[0]["value"]
         for param in params[1:]:
             if param["type"] == "amount":
                 result -= param["value"]
