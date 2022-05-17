@@ -1,7 +1,7 @@
 Evaluate
     Store
         Amount 0
-        Amount 3
+        Amount 8
     // Code: ++[>-<-]
     Store
         Amount 1
