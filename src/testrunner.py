@@ -7,8 +7,9 @@ def function_evaluate(lines: [str], own_line: str, tab_size: int):
         return {"type": "void"}
     result = []
     for arg in args:
-        if arg.type == "escaped_data":
-            result.append(get_args(arg.lines, arg.tab_size))
+        print(arg)
+        if arg["type"] == "escaped_data":
+            result.append(get_args(arg["lines"], arg["tab_size"]))
         else:
             return {"type": "void"}
     if len(result) == 1:
@@ -113,7 +114,7 @@ def get_args(lines: [str], tab_size: int):
 def split_arguments(lines: [str], tab_size: int) -> [[str]]:
     result: [[str]] = []
     for line in lines:
-        if line.lstrip(' ').lstrip('\n').startswith("//"):
+        if line.lstrip(' ').lstrip('\t').startswith("//") or line.lstrip(' ').lstrip('\t') == "":
             continue
         indent_char = '\t' if tab_size == -1 else ' ' * tab_size
         if not line.startswith(indent_char):
