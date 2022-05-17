@@ -20,12 +20,31 @@ def function_evaluate(lines: [str], own_line: str, tab_size: int):
         }
 
 
+storage = {}
+
+
 def function_store(lines: [str], own_line: str, tab_size: int):
-    pass
+    global storage
+    args = get_args(lines, tab_size)
+    print(args)
+    if len(args) != 2:
+        return {"type": "void"}
+    elif args[0]["type"] != "amount" or args[0]["value"] < 0:
+        return {"type": "void"}
+    else:
+        storage[args[0]["value"]] = args[1]
+        return args[1]
 
 
 def function_retrieve(lines: [str], own_line: str, tab_size: int):
-    pass
+    global storage
+    args = get_args(lines, tab_size)
+    if len(args) != 1:
+        return {"type": "void"}
+    elif args[0]["type"] != "amount" or args[0]["value"] < 0:
+        return {"type": "void"}
+    else:
+        return storage[args[0]["value"]]
 
 
 def function_amount(lines: [str], own_line: str, tab_size: int):
@@ -42,6 +61,10 @@ def function_amount(lines: [str], own_line: str, tab_size: int):
             result += arg["value"]
         else:
             return {"type": "void"}
+    return {
+        "type": "amount",
+        "value": result
+    }
 
 
 def function_escape(lines: [str], own_line: str, tab_size: int):
@@ -90,6 +113,8 @@ def get_args(lines: [str], tab_size: int):
 def split_arguments(lines: [str], tab_size: int) -> [[str]]:
     result: [[str]] = []
     for line in lines:
+        if line.lstrip(' ').lstrip('\n').startswith("//"):
+            continue
         indent_char = '\t' if tab_size == -1 else ' ' * tab_size
         if not line.startswith(indent_char):
             assert not line.startswith(' ') or line.startswith('\t')
@@ -125,7 +150,7 @@ def parse_file(lines: [str]):
             break
         tab_size = 0
 
-    parse_file_recursion(lines, tab_size)
+    parse_file_recursion(lines_without_newlines, tab_size)
 
 
 def parse_file_recursion(lines: [str], tab_size: int):
@@ -134,19 +159,13 @@ def parse_file_recursion(lines: [str], tab_size: int):
         line.lstrip('\t'))
     assert indentation_level == 0
     if line.split(" ")[0].lower() in functions.keys():
-        return functions[line.split(" ")[0].lower()](line, [
-            line.removeprefix(' ' * tab_size if tab_size > 0 else '\t') for line in lines
-        ], tab_size)
+        return functions[line.split(" ")[0].lower()]([
+            line.removeprefix(' ' * tab_size if tab_size > 0 else '\t') for line in lines[1:]
+        ], line, tab_size)
     else:
+        print("hi: " + line.split(" ")[0].lower())
         print("ERROR: unknown keyword:" + line)
 
-
-# a
-#   b
-#   b
-#      c
-#      c
-#   b
 
 if __name__ == "__main__":
     argv = sys.argv[1:]
