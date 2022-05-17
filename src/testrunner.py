@@ -176,3 +176,4 @@ if __name__ == "__main__":
     argv = sys.argv[1:]
     with open(argv[0], "r") as f:
         parse_file(f.readlines())
+        print(storage)
