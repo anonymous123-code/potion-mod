@@ -38,7 +38,6 @@ def function_store(lines: [str], own_line: str, tab_size: int):
         return {"type": "void"}
     else:
         storage[args[0]["value"]] = args[1]
-        print("store: " + str(args[1]))
         return args[1]
 
 
@@ -51,7 +50,6 @@ def function_retrieve(lines: [str], own_line: str, tab_size: int):
         return {"type": "void"}
     else:
         if args[0]["value"] in storage.keys():
-            print("retrieve: " + str(storage[args[0]["value"]]))
             return storage[args[0]["value"]]
         else:
             return {"type": "amount", "value": 0}
@@ -90,7 +88,6 @@ def function_select(lines: [str], own_line: str, tab_size: int):
     if len(params) < 2:
         return {"type": "void"}
     if params[0]["type"] == "amount":
-        print(params[max(min(params[0]["value"] + 1, len(params) - 1), 1)])
         return params[max(min(params[0]["value"] + 1, len(params) - 1), 1)]
     else:
         return {"type": "void"}
