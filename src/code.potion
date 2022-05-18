@@ -14,13 +14,13 @@ Evaluate
         Amount 4
     Store
         Amount 4
-        Amount 0
+        Amount 1
     Store
         Amount 5
         Amount 2
     Store
         Amount 6
-        Amount 1
+        Amount 0
     Store
         Amount 7
         Amount 2
@@ -171,11 +171,33 @@ Evaluate
                         // If 5 ]
                         Escape
                             Evaluate
-                                Retrieve
+                                Select
+                                    // get mem val
                                     Amount
-                                        Amount 5
+                                        Amount 1
                                         Retrieve
-                                            Amount 0
+                                            Amount
+                                                Amount 6
+                                                // get mem pointer val
+                                                Retrieve
+                                                    Amount
+                                                        Amount 1
+                                                        Retrieve
+                                                            Amount 0
+                                                Retrieve
+                                                    Amount 0
+                                    Retrieve
+                                        Amount
+                                            Amount 5
+                                            Retrieve
+                                                Amount 0
+                                    Escape
+                                        debug Hi
+                                    Retrieve
+                                        Amount
+                                            Amount 5
+                                            Retrieve
+                                                Amount 0
 
                 // increase code pointer
                 Store
@@ -230,7 +252,7 @@ Evaluate
                         Evaluate
                         Evaluate
                         Evaluate
-                        Escape // [
+                        Escape
                             // decrease brackets counter
                             Store
                                 Amount
@@ -244,7 +266,6 @@ Evaluate
                                             Retrieve
                                                 Amount 0
                                     Amount 1
-
                         Escape // ]
                             // increase brackets counter
                             Store
@@ -274,22 +295,20 @@ Evaluate
                         Amount 1
                 Evaluate
                     Select
-                        // Bracket Counter is -1 when allowed to run
-                        Amount
-                            Amount 1
-                            Retrieve
-                                Amount
-                                    Amount 3
-                                    Retrieve
-                                        Amount 0
+                        // Bracket Counter is 0 when allowed to exit
+                        Retrieve
+                            Amount
+                                Amount 3
+                                Retrieve
+                                    Amount 0
+                        // if finished, stop recursion
+                        Evaluate
                         // This function
                         Retrieve
                             Amount
                                 Amount 5
                                 Retrieve
                                     Amount 0
-                        // if finished, stop recursion
-                        Evaluate
     Evaluate
         Retrieve
             Amount
