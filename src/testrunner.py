@@ -139,9 +139,17 @@ def split_arguments(lines: [str], tab_size: int) -> [[str]]:
     return result
 
 
+def function_debug(lines: [str], own_line: str, tab_size: int):
+    if len(own_line.split(" ")) > 1:
+        print(" ".join(own_line.split(" ")[1:]))
+        return {"type": "void"}
+    print(storage)
+    return {"type": "void"}
+
+
 functions = {"evaluate": function_evaluate, "store": function_store, "amount": function_amount,
              "retrieve": function_retrieve, "escape": function_escape, "select": function_select,
-             "negativity": function_negativity}
+             "negativity": function_negativity, "debug": function_debug}
 
 
 def parse_file(lines: [str]):
