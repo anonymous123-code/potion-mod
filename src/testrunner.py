@@ -5,18 +5,24 @@ def function_evaluate(lines: [str], own_line: str, tab_size: int):
     args = get_args(lines, tab_size)
     if len(args) == 0:
         return {"type": "void"}
-    result = []
+    results = []
     for arg in args:
         if arg["type"] == "escaped_data":
-            result.append(get_args(arg["lines"], arg["tab_size"]))
+            results.append(get_args(arg["lines"], arg["tab_size"]))
         else:
             return {"type": "void"}
-    if len(result) == 1:
-        return result[0]
+    if len(results) == 1:
+        return results[0][0] if len(results[0]) == 1 else {
+            "type": "arg_list",
+            "list": results[0]
+        }
     else:
         return {
             "type": "arg_list",
-            "list": result
+            "list": [{
+                "type": "arg_list",
+                "list": result
+            } for result in results]
         }
 
 
@@ -32,6 +38,7 @@ def function_store(lines: [str], own_line: str, tab_size: int):
         return {"type": "void"}
     else:
         storage[args[0]["value"]] = args[1]
+        print("store: " + str(args[1]))
         return args[1]
 
 
@@ -43,7 +50,11 @@ def function_retrieve(lines: [str], own_line: str, tab_size: int):
     elif args[0]["type"] != "amount" or args[0]["value"] < 0:
         return {"type": "void"}
     else:
-        return storage[args[0]["value"]]
+        if args[0]["value"] in storage.keys():
+            print("retrieve: " + str(storage[args[0]["value"]]))
+            return storage[args[0]["value"]]
+        else:
+            return {"type": "amount", "value": 0}
 
 
 def function_amount(lines: [str], own_line: str, tab_size: int):
@@ -79,6 +90,7 @@ def function_select(lines: [str], own_line: str, tab_size: int):
     if len(params) < 2:
         return {"type": "void"}
     if params[0]["type"] == "amount":
+        print(params[max(min(params[0]["value"] + 1, len(params) - 1), 1)])
         return params[max(min(params[0]["value"] + 1, len(params) - 1), 1)]
     else:
         return {"type": "void"}
