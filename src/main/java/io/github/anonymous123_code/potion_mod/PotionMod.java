@@ -1,7 +1,13 @@
 package io.github.anonymous123_code.potion_mod;
 
+import io.github.anonymous123_code.potion_mod.data_type.AmountDataFactory;
+import io.github.anonymous123_code.potion_mod.data_type.VoidDataFactory;
+import io.github.anonymous123_code.potion_mod.item.PotionItem;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +16,15 @@ public class PotionMod implements ModInitializer {
 	// It is considered best practice to use your mod name as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger("Potion Mod");
+	public static final PotionItem POTION_ITEM = new PotionItem(new QuiltItemSettings());
 
 	@Override
 	public void onInitialize(ModContainer mod) {
 		LOGGER.info("Hello Quilt world from {}!", mod.metadata().name());
+
+		Registry.register(Registry.ITEM, new Identifier(mod.metadata().id(), "potion"), POTION_ITEM);
+
+		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
+		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
 	}
 }

@@ -1,6 +1,5 @@
 package io.github.anonymous123_code.potion_mod.api.operator;
 
-import io.github.anonymous123_code.potion_mod.api.data_type.DataType;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
