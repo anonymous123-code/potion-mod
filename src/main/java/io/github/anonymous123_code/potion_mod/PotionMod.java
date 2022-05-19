@@ -16,7 +16,7 @@ public class PotionMod implements ModInitializer {
 	// It is considered best practice to use your mod name as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger("Potion Mod");
-	public static final PotionItem POTION_ITEM = new PotionItem(new QuiltItemSettings());
+	public static final PotionItem POTION_ITEM = new PotionItem(new QuiltItemSettings().maxCount(1));
 
 	@Override
 	public void onInitialize(ModContainer mod) {
