@@ -6,10 +6,7 @@ import io.github.anonymous123_code.potion_mod.data_type.ListDataFactory;
 import io.github.anonymous123_code.potion_mod.data_type.PotionDataFactory;
 import io.github.anonymous123_code.potion_mod.data_type.VoidDataFactory;
 import io.github.anonymous123_code.potion_mod.item.PotionItem;
-import io.github.anonymous123_code.potion_mod.operators.AmountOperator;
-import io.github.anonymous123_code.potion_mod.operators.EscapeOperator;
-import io.github.anonymous123_code.potion_mod.operators.NegativityOperator;
-import io.github.anonymous123_code.potion_mod.operators.SelectionOperator;
+import io.github.anonymous123_code.potion_mod.operators.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
@@ -33,8 +30,9 @@ public class PotionMod implements ModInitializer {
 
 		OperatorRegistry.register(new AmountOperator(new Identifier(mod.metadata().id(), "amount")));
 		OperatorRegistry.register(new NegativityOperator(new Identifier(mod.metadata().id(), "negativity")));
-		OperatorRegistry.register(new SelectionOperator(new Identifier(mod.metadata().id(), "selection")));
+		OperatorRegistry.register(new SelectionOperator(new Identifier(mod.metadata().id(), "select")));
 		OperatorRegistry.register(new EscapeOperator(new Identifier(mod.metadata().id(), "escape")));
+		OperatorRegistry.register(new EvaluationOperator(new Identifier(mod.metadata().id(), "evaluate")));
 
 		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
 		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
