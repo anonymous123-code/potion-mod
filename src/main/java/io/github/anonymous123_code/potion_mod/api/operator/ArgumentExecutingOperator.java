@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author anonymous123-code
  */
-public abstract non-sealed class ArgumentExecutingOperator extends Operator<List<Data>> {
+public abstract non-sealed class ArgumentExecutingOperator extends Operator<List<Data<?>>> {
 	private final Identifier identifier;
 
 	public ArgumentExecutingOperator(Identifier identifier) {
@@ -20,5 +20,5 @@ public abstract non-sealed class ArgumentExecutingOperator extends Operator<List
 		return this.identifier;
 	}
 
-	public abstract Data getResult(List<Data> parameters);
+	public abstract Data<?> getResult(List<Data<?>> parameters);
 }

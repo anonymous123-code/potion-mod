@@ -68,10 +68,10 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		return stack;
 	}
 
-	public Data evaluatePotion(NbtCompound potion, int rec_depth) {
-		Operator operator = OperatorRegistry.get(new Identifier(potion.getString("operator")));
+	public Data<?> evaluatePotion(NbtCompound potion, int rec_depth) {
+		Operator<?> operator = OperatorRegistry.get(new Identifier(potion.getString("operator")));
 		if (operator instanceof ArgumentExecutingOperator) {
-			List<Data> params = new ArrayList<>();
+			List<Data<?>> params = new ArrayList<>();
 			for (NbtElement element : potion.getList("parameters", 10)) {
 				params.add(evaluatePotion((NbtCompound) element, rec_depth + 1));
 			}

@@ -8,5 +8,5 @@ import net.minecraft.util.Identifier;
  */
 public sealed abstract class Operator<B> permits ArgumentExecutingOperator, RawArgumentOperator{
 	protected abstract Identifier getIdentifier();
-	protected abstract Data getResult(B params);
+	protected abstract Data<?> getResult(B params);
 }

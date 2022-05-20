@@ -1,6 +1,5 @@
 package io.github.anonymous123_code.potion_mod.data_type;
 
-import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import io.github.anonymous123_code.potion_mod.api.data_type.DataFactory;
 import net.minecraft.util.Identifier;
 
@@ -27,14 +26,4 @@ public class VoidDataFactory extends DataFactory<Object> {
 		return new VoidData(this.getIdentifier(), param);
 	}
 
-	public static class VoidData extends Data<Object> {
-		private VoidData(Identifier identifier, Object param) {
-			super(identifier, param);
-		}
-
-		@Override
-		public Object getValue() {
-			return null;
-		}
-	}
 }

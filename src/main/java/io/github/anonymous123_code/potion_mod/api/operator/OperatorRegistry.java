@@ -10,20 +10,20 @@ import java.util.Map;
 /**
  * @author anonymous123-code
  */
-public class OperatorRegistry implements Iterable<Operator> {
-	private static final Map<Identifier, Operator> types = new HashMap<>();
+public class OperatorRegistry implements Iterable<Operator<?>> {
+	private static final Map<Identifier, Operator<?>> types = new HashMap<>();
 
-	public static void register(Operator dataType) {
+	public static void register(Operator<?> dataType) {
 		types.put(dataType.getIdentifier(), dataType);
 	}
 
 	@NotNull
 	@Override
-	public Iterator<Operator> iterator() {
+	public Iterator<Operator<?>> iterator() {
 		return types.values().iterator();
 	}
 
-	public static Operator get(Identifier identifier) {
+	public static Operator<?> get(Identifier identifier) {
 		return types.get(identifier);
 	}
 }
