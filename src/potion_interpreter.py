@@ -34,7 +34,7 @@ def function_store(lines: [str], own_line: str, tab_size: int):
     args = get_args(lines, tab_size)
     if len(args) != 2:
         return {"type": "void"}
-    elif args[0]["type"] != "amount" or args[0]["value"] < 0:
+    elif args[0]["type"] != "amount":
         return {"type": "void"}
     else:
         storage[args[0]["value"]] = args[1]
@@ -46,7 +46,7 @@ def function_retrieve(lines: [str], own_line: str, tab_size: int):
     args = get_args(lines, tab_size)
     if len(args) != 1:
         return {"type": "void"}
-    elif args[0]["type"] != "amount" or args[0]["value"] < 0:
+    elif args[0]["type"] != "amount":
         return {"type": "void"}
     else:
         if args[0]["value"] in storage.keys():
