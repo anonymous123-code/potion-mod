@@ -16,7 +16,7 @@
 				"issues": "https://github.com/anonymous123-code/potion-mod/issues",
 				"sources": "https://github.com/anonymous123-code/potion-mod"
 			},
-			"icon": "assets/example_mod/icon.png"
+			"icon": "assets/potion_mod/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
