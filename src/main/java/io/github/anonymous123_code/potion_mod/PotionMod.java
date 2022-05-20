@@ -33,6 +33,7 @@ public class PotionMod implements ModInitializer {
 		OperatorRegistry.register(new SelectionOperator(new Identifier(mod.metadata().id(), "select")));
 		OperatorRegistry.register(new EscapeOperator(new Identifier(mod.metadata().id(), "escape")));
 		OperatorRegistry.register(new EvaluationOperator(new Identifier(mod.metadata().id(), "evaluate")));
+		OperatorRegistry.register(new StateOperator(new Identifier(mod.metadata().id(), "state")));
 
 		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
 		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
