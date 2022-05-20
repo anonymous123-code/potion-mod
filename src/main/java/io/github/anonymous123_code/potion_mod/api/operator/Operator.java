@@ -1,6 +1,7 @@
 package io.github.anonymous123_code.potion_mod.api.operator;
 
 import io.github.anonymous123_code.potion_mod.api.data_type.Data;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 /**
@@ -9,4 +10,7 @@ import net.minecraft.util.Identifier;
 public sealed abstract class Operator<B> permits ArgumentExecutingOperator, RawArgumentOperator{
 	protected abstract Identifier getIdentifier();
 	protected abstract Data<?> getResult(B params);
+	public TranslatableText getTranslatableText(){
+		return new TranslatableText("turing_potions.operator." + String.join(".", getIdentifier().getPath().split("/")));
+	}
 }
