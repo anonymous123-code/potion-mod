@@ -5,5 +5,9 @@
   "turing_potions.operator.turing_potions.escape": "Escape",
   "turing_potions.operator.turing_potions.evaluate": "Evaluate",
   "turing_potions.operator.turing_potions.state": "State",
-  "item.turing_potions.potion": "Mystic Potion"
+  "item.turing_potions.potion": "Mystic Potion",
+  "turing_potions.data_type.turing_potions.amount": "%d",
+  "turing_potions.data_type.turing_potions.potion": "%s",
+  "turing_potions.data_type.turing_potions.void": "Void",
+  "turing_potions.data_type.turing_potions.list": "[%s]"
 }
