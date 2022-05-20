@@ -34,5 +34,6 @@ public class PotionMod implements ModInitializer {
 
 		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
 		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
+		PotionDataFactory.setUp(new Identifier(mod.metadata().id(), "potion"));
 	}
 }
