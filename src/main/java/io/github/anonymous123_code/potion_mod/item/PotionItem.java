@@ -79,9 +79,13 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		if (stack.getNbt() == null) {
+			tooltip.add(PotionUtilAccessor.getNONE_TEXT());
+			return;
+		}
 		NbtCompound compound = stack.getNbt().getCompound("Potion");
 		if (compound != null) {
-			OperatorRegistry.get(new Identifier(compound.getString("operator")));
+			tooltip.add(OperatorRegistry.get(new Identifier(compound.getString("operator"))).getTranslatableText());
 		} else {
 			tooltip.add(PotionUtilAccessor.getNONE_TEXT());
 		}
