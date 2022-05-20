@@ -1,5 +1,6 @@
 package io.github.anonymous123_code.potion_mod.item;
 
+import io.github.anonymous123_code.potion_mod.PotionMod;
 import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import io.github.anonymous123_code.potion_mod.api.operator.ArgumentExecutingOperator;
 import io.github.anonymous123_code.potion_mod.api.operator.Operator;
@@ -52,7 +53,7 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		if (!world.isClient && stack.hasNbt()) {
 			NbtCompound compound = stack.getNbt().getCompound("Potion");
 			if (compound != null) {
-				evaluatePotion(compound, 0);
+				PotionMod.LOGGER.info(evaluatePotion(compound, 0).toString());
 			}
 		}
 
