@@ -1,5 +1,7 @@
 package io.github.anonymous123_code.turing_potions.api.data_type;
 
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 /**
@@ -17,4 +19,8 @@ public abstract class Data<B> {
 	}
 
 	public abstract B getValue();
+
+	public Text toText() {
+		return new TranslatableText("turing_potions.data_type." + getIdentifier().getNamespace() + "." + String.join(".", getIdentifier().getPath().split("/")));
+	};
 }
