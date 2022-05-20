@@ -34,7 +34,7 @@ Most these elements can be combined to make other operators:
 
 When making an advanced potion,the essentia are applied like this:
 The first essence serves as an operator. The following operators are defined:
- - Selection: returns the `max(min(n+1, param_length-1), 1)`th Element of the params, based on the first int param n []
+ - Selection: returns the `max(min(n+1, param_length-1), 1)`th Element of the params, based on the first int param n [-]
  - Evaluation: Tries to evaluate the parameter, if multiple as sequence, returns result if multiple as list, `void` if error(such as non-executable, or no params (no params is cacheable)) []
  - Escaping: Returns the parameter as an executable value []
  - Retrieving: State with one param, returns the value stored at the index given by the param []
