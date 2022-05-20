@@ -1,6 +1,6 @@
 package io.github.anonymous123_code.potion_mod.item;
 
-import io.github.anonymous123_code.potion_mod.api.data_type.DataFactory;
+import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import io.github.anonymous123_code.potion_mod.api.operator.ArgumentExecutingOperator;
 import io.github.anonymous123_code.potion_mod.api.operator.Operator;
 import io.github.anonymous123_code.potion_mod.api.operator.OperatorRegistry;
@@ -67,10 +67,10 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		return stack;
 	}
 
-	public DataFactory.Data evaluatePotion(NbtCompound potion, int rec_depth) {
+	public Data evaluatePotion(NbtCompound potion, int rec_depth) {
 		Operator operator = OperatorRegistry.get(new Identifier(potion.getString("operator")));
 		if (operator instanceof ArgumentExecutingOperator) {
-			List<DataFactory.Data> params = new ArrayList<>();
+			List<Data> params = new ArrayList<>();
 			for (NbtElement element : potion.getList("parameters", 10)) {
 				params.add(evaluatePotion((NbtCompound) element, rec_depth + 1));
 			}

@@ -1,6 +1,6 @@
 package io.github.anonymous123_code.potion_mod.api.operator;
 
-import io.github.anonymous123_code.potion_mod.api.data_type.DataFactory;
+import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.Identifier;
 
@@ -21,5 +21,5 @@ public abstract non-sealed class RawArgumentOperator extends Operator<NbtList> {
 	}
 
 	@Override
-	public abstract DataFactory.Data getResult(NbtList params);
+	public abstract Data getResult(NbtList params);
 }

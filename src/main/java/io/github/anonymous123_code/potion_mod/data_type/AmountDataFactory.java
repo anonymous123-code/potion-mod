@@ -1,5 +1,6 @@
 package io.github.anonymous123_code.potion_mod.data_type;
 
+import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import io.github.anonymous123_code.potion_mod.api.data_type.DataFactory;
 import net.minecraft.util.Identifier;
 
@@ -26,7 +27,7 @@ public class AmountDataFactory extends DataFactory<Float> {
 		return new AmountData(this.getIdentifier(), param);
 	}
 
-	public class AmountData extends Data<Float> {
+	public static class AmountData extends Data<Float> {
 		private final Float value;
 		private AmountData(Identifier identifier, Float param) {
 			super(identifier, param);

@@ -1,6 +1,6 @@
 package io.github.anonymous123_code.potion_mod.api.operator;
 
-import io.github.anonymous123_code.potion_mod.api.data_type.DataFactory;
+import io.github.anonymous123_code.potion_mod.api.data_type.Data;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author anonymous123-code
  */
-public abstract non-sealed class ArgumentExecutingOperator extends Operator<List<DataFactory.Data>> {
+public abstract non-sealed class ArgumentExecutingOperator extends Operator<List<Data>> {
 	private final Identifier identifier;
 
 	public ArgumentExecutingOperator(Identifier identifier) {
@@ -20,5 +20,5 @@ public abstract non-sealed class ArgumentExecutingOperator extends Operator<List
 		return this.identifier;
 	}
 
-	public abstract DataFactory.Data getResult(List<DataFactory.Data> parameters);
+	public abstract Data getResult(List<Data> parameters);
 }
