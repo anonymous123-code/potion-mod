@@ -24,6 +24,6 @@ public class PotionDataFactory extends DataFactory<NbtList> {
 	}
 	@Override
 	public Data<NbtList> create(NbtList param) {
-		return null;
+		return new PotionData(this.getIdentifier(), param);
 	}
 }
