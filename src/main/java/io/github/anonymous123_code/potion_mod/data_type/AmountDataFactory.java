@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 /**
  * @author anonymous123-code
  */
-public class AmountDataFactory extends DataFactory<Float> {
+public class AmountDataFactory extends DataFactory<Double> {
 	private static AmountDataFactory INSTANCE = null;
 
 	private AmountDataFactory(Identifier identifier) {
@@ -23,19 +23,24 @@ public class AmountDataFactory extends DataFactory<Float> {
 	}
 
 	@Override
-	public AmountData create(Float param) {
+	public AmountData create(Double param) {
 		return new AmountData(this.getIdentifier(), param);
 	}
 
-	public static class AmountData extends Data<Float> {
-		private final Float value;
-		private AmountData(Identifier identifier, Float param) {
+	public static class AmountData extends Data<Double> {
+		private final Double value;
+		private AmountData(Identifier identifier, Double param) {
 			super(identifier, param);
 			value = param;
 		}
 
 		@Override
-		public Float getValue() {
+		public String toString() {
+			return super.toString() + "[" + this.value + "]";
+		}
+
+		@Override
+		public Double getValue() {
 			return this.value;
 		}
 	}
