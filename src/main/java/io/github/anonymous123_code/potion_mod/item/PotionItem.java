@@ -12,10 +12,10 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.potion.PotionUtil;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -85,11 +85,25 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		}
 		NbtCompound compound = stack.getNbt().getCompound("Potion");
 		if (compound != null) {
-			tooltip.add(OperatorRegistry.get(new Identifier(compound.getString("operator"))).getTranslatableText());
+			tooltip.add(getPotionTextOf(compound));
 		} else {
 			tooltip.add(PotionUtilAccessor.getNONE_TEXT());
 		}
 	}
 
+	public Text getPotionTextOf(NbtCompound compound) {
+		try {
+			MutableText result = OperatorRegistry.get(new Identifier(compound.getString("operator"))).getTranslatableText().append("(");
+			for (NbtElement element :
+					compound.getList("parameters", 10)) {
+				NbtCompound nbtCompound = (NbtCompound) element;
+				result.append(getPotionTextOf(nbtCompound)).append(",");
+			}
+			result.append(")");
+			return result;
+		} catch (Exception e) {
+			return Text.of("...");
+		}
+	}
 
 }

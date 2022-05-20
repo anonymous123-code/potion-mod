@@ -11,6 +11,6 @@ public sealed abstract class Operator<B> permits ArgumentExecutingOperator, RawA
 	protected abstract Identifier getIdentifier();
 	protected abstract Data<?> getResult(B params);
 	public TranslatableText getTranslatableText(){
-		return new TranslatableText("turing_potions.operator." + String.join(".", getIdentifier().getPath().split("/")));
+		return new TranslatableText("turing_potions.operator." + getIdentifier().getNamespace() + "." + String.join(".", getIdentifier().getPath().split("/")));
 	}
 }
