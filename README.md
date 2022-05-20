@@ -1,8 +1,7 @@
 # Potion Mod
 temporary name
 
-aims to add turing complete potions to minecraft
-I thhink with increment this is turing complete
+Aims to add turing complete potions to Minecraft
 
 Using the brewing stand, one can brew so-called primitive potions.
 These have a low concentration of the elements.
@@ -78,3 +77,10 @@ Evaluate
 [a until technical limit]: The "tape"
 ```
 [See p_interpreter.potion](src/p_interpreter.potion)
+
+### Credits / Inspiration / Thanks
+[Psi](https://psi.vazkii.net/) + [Magical Psi](https://www.curseforge.com/minecraft/mc-mods/magical-psi) - Inspiration for a Turing complete system in a magic theme
+
+[Hexcasting](https://www.curseforge.com/minecraft/mc-mods/hexcasting) - Combination of Select, Escape and Evaluate to achieve turing completeness; Structure of this project
+
+*I recommend checking those out, they are great!*
