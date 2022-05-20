@@ -1,8 +1,10 @@
 package io.github.anonymous123_code.potion_mod;
 
+import io.github.anonymous123_code.potion_mod.api.operator.OperatorRegistry;
 import io.github.anonymous123_code.potion_mod.data_type.AmountDataFactory;
 import io.github.anonymous123_code.potion_mod.data_type.VoidDataFactory;
 import io.github.anonymous123_code.potion_mod.item.PotionItem;
+import io.github.anonymous123_code.potion_mod.operators.AmountOperator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
@@ -23,6 +25,8 @@ public class PotionMod implements ModInitializer {
 		LOGGER.info("Hello Quilt world from {}!", mod.metadata().name());
 
 		Registry.register(Registry.ITEM, new Identifier(mod.metadata().id(), "potion"), POTION_ITEM);
+
+		OperatorRegistry.register(new AmountOperator(new Identifier(mod.metadata().id(), "amount")));
 
 		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
 		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
