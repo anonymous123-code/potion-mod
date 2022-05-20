@@ -1,0 +1,21 @@
+package io.github.anonymous123_code.turing_potions.operators;
+
+import io.github.anonymous123_code.turing_potions.api.data_type.Data;
+import io.github.anonymous123_code.turing_potions.api.operator.RawArgumentOperator;
+import io.github.anonymous123_code.turing_potions.data_type.PotionDataFactory;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.util.Identifier;
+
+/**
+ * @author anonymous123-code
+ */
+public class EscapeOperator extends RawArgumentOperator {
+	public EscapeOperator(Identifier identifier) {
+		super(identifier);
+	}
+
+	@Override
+	public Data<?> getResult(NbtList params) {
+		return PotionDataFactory.getInstance().create(params);
+	}
+}

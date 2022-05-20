@@ -1,0 +1,9 @@
+{
+  "turing_potions.operator.turing_potions.amount": "Amount",
+  "turing_potions.operator.turing_potions.negativity": "Negativity",
+  "turing_potions.operator.turing_potions.select": "Select",
+  "turing_potions.operator.turing_potions.escape": "Escape",
+  "turing_potions.operator.turing_potions.evaluate": "Evaluate",
+  "turing_potions.operator.turing_potions.state": "State",
+  "item.turing_potions.potion": "Mystic Potion"
+}

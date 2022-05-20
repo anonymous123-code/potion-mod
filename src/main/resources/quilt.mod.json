@@ -2,10 +2,10 @@
 	"schema_version": 1,
 	"quilt_loader": {
 		"group": "io.github.anonymous123_code",
-		"id": "potion_mod",
+		"id": "turing_potions",
 		"version": "${version}",
 		"metadata": {
-			"name": "Potion Mod",
+			"name": "Turing Potions",
 			"description": "A short description of your mod.",
 			"license": "LGPL-2.1-only",
 			"contributors": {
@@ -16,11 +16,11 @@
 				"issues": "https://github.com/anonymous123-code/potion-mod/issues",
 				"sources": "https://github.com/anonymous123-code/potion-mod"
 			},
-			"icon": "assets/potion_mod/icon.png"
+			"icon": "assets/turing_potions/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "io.github.anonymous123_code.potion_mod.PotionMod"
+			"init": "io.github.anonymous123_code.turing_potions.TuringPotionsMod"
 		},
 		"depends": [
 			{
@@ -37,5 +37,5 @@
 			}
 		]
 	},
-	"mixin": "potion_mod.mixins.json"
+	"mixin": "turing_potions.mixins.json"
 }
