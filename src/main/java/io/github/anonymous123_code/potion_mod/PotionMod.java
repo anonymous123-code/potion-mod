@@ -2,6 +2,7 @@ package io.github.anonymous123_code.potion_mod;
 
 import io.github.anonymous123_code.potion_mod.api.operator.OperatorRegistry;
 import io.github.anonymous123_code.potion_mod.data_type.AmountDataFactory;
+import io.github.anonymous123_code.potion_mod.data_type.ListDataFactory;
 import io.github.anonymous123_code.potion_mod.data_type.PotionDataFactory;
 import io.github.anonymous123_code.potion_mod.data_type.VoidDataFactory;
 import io.github.anonymous123_code.potion_mod.item.PotionItem;
@@ -38,5 +39,6 @@ public class PotionMod implements ModInitializer {
 		VoidDataFactory.setUp(new Identifier(mod.metadata().id(), "void"));
 		AmountDataFactory.setUp(new Identifier(mod.metadata().id(), "amount"));
 		PotionDataFactory.setUp(new Identifier(mod.metadata().id(), "potion"));
+		ListDataFactory.setUp(new Identifier(mod.metadata().id(), "list"));
 	}
 }
