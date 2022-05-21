@@ -31,8 +31,34 @@ Most these elements can be combined to make other operators:
  - Logic + Void = Escaping
  - Amount + Coldness = Negativity
 
+Concept for other parts of the vanilla potion system that aren't instant:
+ - Normal potion effects: Apply stuff each tick, with a per-effect ressource used up by operators(Amount varies). This allows the potion to set an upper limit
+ - Area effect clouds (Including splash potions):
+    I'm thinking of changing those entirely:
+    The cloud is controlled by the effect, combined with the option to execute a potion on another entity, this might work
+ - Tipped arrows similar to area effect clouds, can be shot
+
 When making an advanced potion,the essentia are applied like this:
 The first essence serves as an operator. The following operators are defined:
+
+To be implemented:
+- Motion: Add + get velocity to target
+- get Eye height
+- get position & rotation vector
+- vector & list operations
+- target selection + eval as (probably in very low radius (3 blocks?))
+- Storing in different scopes: (Effect, Effect entity, Other entities, global)
+- rotate entity
+- use/left click/hold left click(=> Maybe just Place/Break block)
+- Inventory management
+- influence in health & vision
+- visual stuff -> chat, highlight pos, etc
+- set on fire
+- block raycast
+- teleport
+- disable ai
+
+Implemented:
  - Selection: returns the `max(min(n+1, param_length-1), 1)`th Element of the params, based on the first int param n [X]
  - Evaluation: Tries to evaluate the parameter, if multiple as sequence, returns result if multiple as list, `void` if error(such as non-executable, or no params (no params is cacheable)) [-]
  - Escaping: Returns the parameter as an executable value [-]
