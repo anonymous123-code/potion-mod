@@ -29,6 +29,6 @@ public class PotionData extends Data<NbtList> {
 
 	@Override
 	public Text toText() {
-		return new LiteralText("[" + this.value + "]");
+		return new LiteralText(this.value.toString());
 	}
 }
