@@ -1,5 +1,6 @@
 package io.github.anonymous123_code.turing_potions.block;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -8,6 +9,8 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -20,7 +23,7 @@ import java.util.HashMap;
  */
 public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityProvider {
 	public PotionCauldron(Settings settings) {
-		super(settings,precipitation -> false, new HashMap<>());
+		super(settings,precipitation -> false, Util.make(new Object2ObjectOpenHashMap<>(), map -> map.defaultReturnValue((state, world, pos, player, hand, stack) -> ActionResult.PASS)));
 	}
 
 	@Override
