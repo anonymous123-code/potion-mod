@@ -29,7 +29,7 @@ public class TuringPotionsMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("Potion Mod");
 	public static final PotionItem POTION_ITEM = new PotionItem(new QuiltItemSettings().maxCount(1));
 	public static BlockEntityType<PotionCauldronBlockEntity> POTION_CAULDRON_BLOCK_ENTITY_TYPE;
-	public static final PotionCauldron POTION_CAULDRON_BLOCK = new PotionCauldron(QuiltBlockSettings.copyOf(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
+	public static final PotionCauldron POTION_CAULDRON_BLOCK = new PotionCauldron(QuiltBlockSettings.copyOf(AbstractBlock.Settings.copy(Blocks.CAULDRON)), PotionCauldron.POTION_CAULDRON_BEHAVIOR);
 
 	@Override
 	public void onInitialize(ModContainer mod) {
