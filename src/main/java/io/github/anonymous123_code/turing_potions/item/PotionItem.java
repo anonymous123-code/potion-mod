@@ -99,7 +99,7 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		try {
 			MutableText result = OperatorRegistry.get(new Identifier(compound.getString("operator"))).getTranslatableText().append("(");
 			for (NbtElement element :
-					compound.getList("parameters", 10)) {
+					compound.getList("parameters", NbtElement.COMPOUND_TYPE)) {
 				NbtCompound nbtCompound = (NbtCompound) element;
 				result.append(getPotionTextOf(nbtCompound)).append(",");
 			}

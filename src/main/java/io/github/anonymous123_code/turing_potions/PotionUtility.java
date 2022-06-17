@@ -21,12 +21,12 @@ public class PotionUtility {
 		Operator<?> operator = OperatorRegistry.get(new Identifier(potion.getString("operator")));
 		if (operator instanceof ArgumentExecutingOperator) {
 			List<Data<?>> params = new ArrayList<>();
-			for (NbtElement element : potion.getList("parameters", 10)) {
+			for (NbtElement element : potion.getList("parameters", NbtElement.COMPOUND_TYPE)) {
 				params.add(evaluatePotion((NbtCompound) element, rec_depth + 1));
 			}
 			return ((ArgumentExecutingOperator) operator).getResult(params);
 		} else if (operator instanceof RawArgumentOperator) {
-			return ((RawArgumentOperator) operator).getResult(potion.getList("parameters", 10));
+			return ((RawArgumentOperator) operator).getResult(potion.getList("parameters", NbtElement.COMPOUND_TYPE));
 		} else {
 			// This should never happen, sealed is used
 			return VoidDataFactory.getInstance().create(null);
