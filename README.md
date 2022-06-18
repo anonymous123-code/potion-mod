@@ -1,5 +1,5 @@
-# Potion Mod
-temporary name
+# Turing Potions
+less temporary name
 
 Aims to add turing complete potions to Minecraft
 
@@ -7,8 +7,12 @@ Using the brewing stand, one can brew so-called primitive potions.
 These have a low concentration of the elements.
 While the vanilla potions are primitive potions, too,
 there are other ingredients which might contain multiple different elements and are randomized between each world
-(Mechanic inspired by the between lands).
-There will probably be the following essentia:
+
+
+## Essentia
+
+(Mechanic inspired by the Betweenlands).
+Old ideas for essentia (As I plan for it to be randomized this will probably change):
  - light
  - electricity
  - heat / fire
@@ -25,21 +29,25 @@ There will probably be the following essentia:
  - void
  - language
 
-Most these elements can be combined to make other operators:
- - Logic + State = Select
- - Logic + Electricity = Evaluation
- - Logic + Void = Escaping
- - Amount + Coldness = Negativity
+
 
 Concept for other parts of the vanilla potion system that aren't instant:
- - Normal potion effects: Apply stuff each tick, with a per-effect ressource used up by operators(Amount varies). This allows the potion to set an upper limit
+ - Normal potion effects: Apply stuff each tick, with a per-effect ressource used up by operators(Amount varies). This allows the potion to set an upper time limit
  - Area effect clouds (Including splash potions):
     I'm thinking of changing those entirely:
     The cloud is controlled by the effect, combined with the option to execute a potion on another entity, this might work
  - Tipped arrows similar to area effect clouds, can be shot
 
-When making an advanced potion,the essentia are applied like this:
-The first essence serves as an operator. The following operators are defined:
+## Operators
+Most these elements can be combined to make other operators, the current plan is to make the needed combinations randomized:
+
+(old examples of combination:)
+- Logic + State = Select
+- Logic + Electricity = Evaluation
+- Logic + Void = Escaping
+- Amount + Coldness = Negativity
+
+These are ideas for operators:
 
 To be implemented:
 - Motion: Add + get velocity to target
@@ -68,7 +76,21 @@ Implemented:
  - Amount: returns `1` if no param, else `sum of all params` [X]
  - Negativity: returns `-1` if no param, `-param` if 1 param, else `first param - sum of all other params` [X]
 
-A way to express in written form is demonstrated by these examples; an interpreter is [potion_interpreter.py](src/potion_interpreter.py):
+## Research
+
+The different combinations need to be researched for each world, the current plan is to incentivize experimentation and to have structures explaining main mechanics
+
+## Brewing
+
+Operators are Potions on its own. By combining Potions in a cauldron, more complex Potions can be brewed:
+The first Potion put in decides the top-level Operator of that potion. Other potions added will be appended as parameters for that top-level operator. This allows for Nesting, as well as the (very limited) editing of brewed potions.
+
+Potions will combine (like described above), when the heat level in the cauldron is big enough. Then the second-lowest and the lowest potion will combine, lowering the fill level. This will also halve the temperature. Potions can taken out of the cauldron unchanged if they haven't already combined. The max fill level is 3 (like vanilla cauldrons).
+
+Different heat sources underneath provide different heating speeds, but also have individual heat caps. If a cauldron reaches a specific heat, all its contents vanish, resetting the heat. Adding a potion halves the temperature, when the new fill level is 2, and thirds the temperature, when the new fill level is 3. Potions only combine when a specific temperature is reached.
+
+## Example Potions
+A way to express potions in written form is demonstrated by these examples; an interpreter is [potion_interpreter.py](src/potion_interpreter.py):
 
 While index[1] < 1 do Something:
 ```
@@ -86,10 +108,10 @@ Evaluate
                             Amount 0
                         Evaluate
 ```
-### A P interpreter:
+### A P interpreter
 (Brainfuck without io)
 
-##### The structure:
+#### The structure:
 ```
 [0]: The length of the input programm
 [1 to [0] (inclusive)]: The programm, where 0 = <; 1 = >; 2 = -; 3 = +; 4 = [; 5 = ]
@@ -102,11 +124,14 @@ Evaluate
     bracket match searcher
 [a until technical limit]: The "tape"
 ```
+#### The code
 [See p_interpreter.potion](src/p_interpreter.potion)
 
-### Credits / Inspiration / Thanks
+## Credits / Inspiration / Thanks
 [Psi](https://psi.vazkii.net/) + [Magical Psi](https://www.curseforge.com/minecraft/mc-mods/magical-psi) - Inspiration for a Turing complete system in a magic theme
 
 [Hexcasting](https://www.curseforge.com/minecraft/mc-mods/hexcasting) - Combination of Select, Escape and Evaluate to achieve turing completeness; Structure of this project
+
+[The Betweenlands](https://www.curseforge.com/minecraft/mc-mods/angry-pixel-the-betweenlands-mod) - Research System, similar to geckos
 
 *I recommend checking those out, they are great!*
