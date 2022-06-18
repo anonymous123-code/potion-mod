@@ -13,7 +13,8 @@ import net.minecraft.util.math.BlockPos;
  * @author anonymous123-code
  */
 public class PotionCauldronBlockEntity extends BlockEntity {
-	public NbtList potionStack = new NbtList();
+	private NbtList potionStack = new NbtList();
+	private int temperature;
 	private final int MAX_STACK_LENGTH = LeveledCauldronBlock.MAX_FILL_LEVEL;
 	public PotionCauldronBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
@@ -30,6 +31,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 
 	protected void push(NbtCompound compound) {
 		this.potionStack.add(compound);
+		this.temperature /= this.potionStack.size();
 		this.markDirty();
 	}
 
@@ -51,9 +53,19 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 		else {
 			NbtList params = ((NbtCompound) this.potionStack.get(0)).getList("parameters", NbtElement.COMPOUND_TYPE);
 			params.add(this.potionStack.remove(1));
+			temperature /= 2;
 			this.markDirty();
 			return true;
 		}
+	}
+
+	public int getTemperature() {
+		return this.temperature;
+	}
+
+	public void setTemperature(int temperature) {
+		this.temperature = temperature;
+		this.markDirty();
 	}
 
 	public int getLength() {
@@ -62,11 +74,13 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 
 	@Override
 	public void writeNbt(NbtCompound nbt) {
-		nbt.put("potions", potionStack);
+		nbt.put("Potions", potionStack);
+		nbt.putInt("Temperature", temperature);
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
-		potionStack = nbt.getList("potions", NbtElement.COMPOUND_TYPE);
+		potionStack = nbt.getList("Potions", NbtElement.COMPOUND_TYPE);
+		temperature = nbt.getInt("Temperature");
 	}
 }
