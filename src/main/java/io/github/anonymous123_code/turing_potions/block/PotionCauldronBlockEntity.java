@@ -2,6 +2,7 @@ package io.github.anonymous123_code.turing_potions.block;
 
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -13,10 +14,9 @@ import net.minecraft.util.math.BlockPos;
  */
 public class PotionCauldronBlockEntity extends BlockEntity {
 	public NbtList potionStack = new NbtList();
-	private final int MAX_STACK_LENGTH;
-	public PotionCauldronBlockEntity(BlockPos blockPos, BlockState blockState, int maxStackLength) {
+	private final int MAX_STACK_LENGTH = LeveledCauldronBlock.MAX_FILL_LEVEL;
+	public PotionCauldronBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
-		MAX_STACK_LENGTH = maxStackLength;
 	}
 
 	public NbtCompound takeTop() {
