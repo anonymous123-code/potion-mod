@@ -53,6 +53,6 @@ public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityP
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new PotionCauldronBlockEntity(pos, state);
+		return new PotionCauldronBlockEntity(pos, state, LeveledCauldronBlock.MAX_FILL_LEVEL);
 	}
 }
