@@ -75,9 +75,9 @@ public class PotionCauldronBehavior {
 				player.incrementStat(Stats.USE_CAULDRON);
 				player.incrementStat(Stats.USED.getOrCreateStat(item));
 				if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
-					world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
-				} else {
 					world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
+				} else {
+					world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
 				}
 				world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				world.emitGameEvent(null, GameEvent.FLUID_PICKUP, pos);
