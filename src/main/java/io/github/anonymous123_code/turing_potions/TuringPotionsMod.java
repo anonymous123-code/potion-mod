@@ -28,7 +28,7 @@ public class TuringPotionsMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod name as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("Potion Mod");
+	public static final Logger LOGGER = LoggerFactory.getLogger("Turing Potions");
 	public static final PotionItem POTION_ITEM = new PotionItem(new QuiltItemSettings().maxCount(1));
 	public static BlockEntityType<PotionCauldronBlockEntity> POTION_CAULDRON_BLOCK_ENTITY_TYPE;
 	public static final PotionCauldron POTION_CAULDRON_BLOCK = new PotionCauldron(QuiltBlockSettings.copyOf(AbstractBlock.Settings.copy(Blocks.CAULDRON)), PotionCauldron.POTION_CAULDRON_BEHAVIOR);
