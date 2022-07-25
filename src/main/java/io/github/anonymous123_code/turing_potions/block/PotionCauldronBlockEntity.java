@@ -82,7 +82,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 		Block blockBelow = blockStateBelow.getBlock();
 		int heat_rate = TuringPotionsMod.heatRateRegistryAttachment.get(blockBelow).get(); // Default is 0
 		int heat_cap = TuringPotionsMod.heatCapRegistryAttachment.get(blockBelow).get(); // Default is 0
-		if (heat_rate == 0 || be.getTemperature() >= heat_cap) return;
+		if (heat_rate == 0 || be.getTemperature() >= heat_cap || (blockStateBelow.contains(Properties.LIT) && !blockStateBelow.get(Properties.LIT))) return;
 		be.setTemperature(Math.min(Math.max(be.getTemperature() + heat_rate, 0), heat_cap));
 	}
 
