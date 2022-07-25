@@ -1,6 +1,7 @@
 package io.github.anonymous123_code.turing_potions.block;
 
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -8,6 +9,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraft.state.property.Properties;
 
 /**
  * @author anonymous123-code
@@ -70,6 +74,16 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 
 	public int getLength() {
 		return this.potionStack.size();
+	}
+
+	public static void tick(World world, BlockPos pos, BlockState state, PotionCauldronBlockEntity be) {
+        BlockPos posBelow = pos.add(0,-1, 0);
+		BlockState blockStateBelow = world.getBlockState(posBelow);
+		Block blockBelow = blockStateBelow.getBlock();
+		int heat_rate = TuringPotionsMod.heatRateRegistryAttachment.get(blockBelow).get(); // Default is 0
+		int heat_cap = TuringPotionsMod.heatCapRegistryAttachment.get(blockBelow).get(); // Default is 0
+		if (heat_rate == 0 || be.getTemperature() >= heat_cap) return;
+		be.setTemperature(Math.min(Math.max(be.getTemperature() + heat_rate, 0), heat_cap));
 	}
 
 	@Override

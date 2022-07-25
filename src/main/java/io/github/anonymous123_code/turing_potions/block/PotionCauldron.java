@@ -1,5 +1,6 @@
 package io.github.anonymous123_code.turing_potions.block;
 
+import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -44,8 +45,8 @@ public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityP
 	}
 
 	@Nullable
-	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<? super E> checkType(
-			BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(
+			BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<A> ticker
 	) {
 		return expectedType == givenType ? ticker : null;
 	}
@@ -54,5 +55,10 @@ public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityP
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new PotionCauldronBlockEntity(pos, state);
+	}
+
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, (world2, pos, state2, be) -> PotionCauldronBlockEntity.tick(world2, pos, state2, (PotionCauldronBlockEntity) be));
 	}
 }

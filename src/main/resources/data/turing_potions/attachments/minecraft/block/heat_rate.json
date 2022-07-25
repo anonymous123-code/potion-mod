@@ -1,0 +1,13 @@
+{
+  "replace": "false",
+  "values": {
+    "minecraft:candle": 10,
+    "minecraft:torch": 14,
+    "minecraft:campfire": 20,
+    "minecraft:soul_torch": 25,
+    "minecraft:soul_campfire": 30,
+    "minecraft:fire": 70,
+    "minecraft:soul_fire": 80,
+    "minecraft:lava": 640
+  }
+}
