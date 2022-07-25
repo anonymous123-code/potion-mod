@@ -31,7 +31,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 
 	protected void push(NbtCompound compound) {
 		this.potionStack.add(compound);
-		this.temperature /= this.potionStack.size();
+		this.temperature *= (double) (this.potionStack.size() - 1) / this.potionStack.size();
 		this.markDirty();
 	}
 
