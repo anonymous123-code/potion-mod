@@ -2,7 +2,7 @@ package io.github.anonymous123_code.turing_potions.data_type;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.component.TranslatableComponent;
 import net.minecraft.util.Identifier;
 
 /**
@@ -28,6 +28,6 @@ public class AmountData extends Data<Double> {
 
 	@Override
 	public Text toText() {
-		return new TranslatableText(((TranslatableText) super.toText()).getKey(), value);
+		return Text.translatable(((TranslatableComponent) super.toText().asComponent()).getKey(), value);
 	}
 }

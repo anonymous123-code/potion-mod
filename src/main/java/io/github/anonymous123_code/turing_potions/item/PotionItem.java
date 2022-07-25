@@ -38,7 +38,7 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 
 	@Override
 	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
+		if (this.isInGroup(group)) {
 			stacks.add(new ItemStack(this));
 		}
 	}
@@ -67,7 +67,7 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 			}
 		}
 
-		world.emitGameEvent(user, GameEvent.DRINKING_FINISH, user.getCameraBlockPos());
+		user.emitGameEvent(GameEvent.DRINK);
 		return stack;
 	}
 
