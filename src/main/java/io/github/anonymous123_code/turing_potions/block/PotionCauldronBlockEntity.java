@@ -34,7 +34,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 	}
 
 	protected void push(NbtCompound compound) {
-		this.potionStack.add(compound);
+		this.potionStack.add(compound.copy());
 		this.temperature *= (double) (this.potionStack.size() - 1) / this.potionStack.size();
 		this.markDirty();
 	}
@@ -94,7 +94,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
-		potionStack = nbt.getList("Potions", NbtElement.COMPOUND_TYPE);
+		potionStack = nbt.getList("Potions", NbtElement.COMPOUND_TYPE).copy();
 		temperature = nbt.getInt("Temperature");
 	}
 }
