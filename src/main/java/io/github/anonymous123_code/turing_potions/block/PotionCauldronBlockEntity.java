@@ -3,6 +3,7 @@ package io.github.anonymous123_code.turing_potions.block;
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -84,11 +85,28 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 		int heat_cap = TuringPotionsMod.heatCapRegistryAttachment.get(blockBelow).get(); // Default is 0
 		if (heat_rate == 0 || be.getTemperature() >= heat_cap || (blockStateBelow.contains(Properties.LIT) && !blockStateBelow.get(Properties.LIT))) return;
 		be.setTemperature(Math.min(Math.max(be.getTemperature() + heat_rate, 0), heat_cap));
+
+		if (be.getTemperature() >= 48000 && be.getTemperature() <= 96000) {
+			if (be.tryMergeBottom()) {
+				if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
+					world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
+				} else {
+					world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
+				}
+			}
+		} else if (be.getTemperature() > 96000) {
+			be.takeTop();
+			if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
+				world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
+			} else {
+				world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
+			}
+		}
 	}
 
 	@Override
 	public void writeNbt(NbtCompound nbt) {
-		nbt.put("Potions", potionStack);
+		nbt.put("Potions", potionStack.copy());
 		nbt.putInt("Temperature", temperature);
 	}
 
