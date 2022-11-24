@@ -9,10 +9,14 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import net.minecraft.state.property.Properties;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author anonymous123-code
@@ -108,6 +112,17 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 	public void writeNbt(NbtCompound nbt) {
 		nbt.put("Potions", potionStack.copy());
 		nbt.putInt("Temperature", temperature);
+	}
+
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.of(this);
+	}
+
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		return this.toNbt();
 	}
 
 	@Override
