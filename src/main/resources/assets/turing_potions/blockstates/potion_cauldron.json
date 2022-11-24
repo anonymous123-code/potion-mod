@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "": {
+      "model": "turing_potions:block/potion_cauldron"
+    }
+  }
+}
