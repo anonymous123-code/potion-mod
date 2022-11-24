@@ -20,7 +20,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "io.github.anonymous123_code.turing_potions.TuringPotionsMod"
+			"init": "io.github.anonymous123_code.turing_potions.TuringPotionsMod",
+			"client_init": "io.github.anonymous123_code.turing_potions.client.TuringPotionsModClient"
 		},
 		"depends": [
 			{
