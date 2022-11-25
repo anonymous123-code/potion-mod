@@ -9,7 +9,9 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
@@ -55,6 +57,21 @@ public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityP
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new PotionCauldronBlockEntity(pos, state);
+	}
+
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
+		PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE).orElseThrow();
+		if (blockEntity.getTemperature() >= 32000) {
+			if (random.nextInt(3) == 0) world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+		}
+		if (blockEntity.getTemperature() >= 48000) {
+			if (random.nextBoolean()) world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+		}
+		if (blockEntity.getTemperature() >= 72000) {
+			world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/4, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+			if (random.nextBoolean()) world.addImportantParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+		}
 	}
 
 	@Override
