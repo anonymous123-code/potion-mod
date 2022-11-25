@@ -1,5 +1,7 @@
 package io.github.anonymous123_code.turing_potions.block;
 
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +14,8 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -100,6 +104,14 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 			}
 		} else if (be.getTemperature() > 96000) {
 			be.takeTop();
+			if (world instanceof ServerWorld) {
+				try {
+					((ServerWorld) world).spawnParticles(ParticleTypes.DUST.getParametersFactory().read(ParticleTypes.DUST, new StringReader(" 0.8 0.5 1.0 1.5")), pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 3, 0.2, 0.2, 0.2, 1);
+				} catch (CommandSyntaxException e) {
+					e.printStackTrace();
+					throw new AssertionError();
+				}
+			}
 			if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
 				world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
 			} else {
