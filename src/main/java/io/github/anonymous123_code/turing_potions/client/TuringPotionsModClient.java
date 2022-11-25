@@ -10,6 +10,7 @@ import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 public class TuringPotionsModClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
+		PotionCauldronBlockEntityRenderer.setModContainer(mod);
 		BlockEntityRendererRegistry.register(TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, PotionCauldronBlockEntityRenderer::new);
 	}
 }
