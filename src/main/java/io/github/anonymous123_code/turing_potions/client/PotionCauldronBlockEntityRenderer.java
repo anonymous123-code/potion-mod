@@ -36,28 +36,28 @@ public class PotionCauldronBlockEntityRenderer implements BlockEntityRenderer<Po
 		VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getTranslucent());
 
 		vertexConsumer
-				.vertex(matrices.peek().getModel(), 0.125f, .5f, 0.875f)
+				.vertex(matrices.peek().getModel(), 0.125f, .5625f + (entity.getLength()-1)*3/16f, 0.875f)
 				.color(1f, 1f, 1f, 1f)
 				.uv(potionSprite.getMinU(), potionSprite.getMaxV())
 				.light(0,240)
 				.normal(0,1,0).next();
 
 		vertexConsumer
-				.vertex(matrices.peek().getModel(), 0.875f, .5f, 0.875f)
+				.vertex(matrices.peek().getModel(), 0.875f, .5625f + (entity.getLength()-1)*3/16f, 0.875f)
 				.color(1f, 1f, 1f, 1f)
 				.uv(potionSprite.getMaxU(), potionSprite.getMaxV())
 				.light(0,240)
 				.normal(0,1,0).next();
 
 		vertexConsumer
-				.vertex(matrices.peek().getModel(), 0.875f, .5f, 0.125f)
+				.vertex(matrices.peek().getModel(), 0.875f, .5625f + (entity.getLength()-1)*3/16f, 0.125f)
 				.color(1f, 1f, 1f, 1f)
 				.uv(potionSprite.getMaxU(), potionSprite.getMinV())
 				.light(0,240)
 				.normal(0,1,0).next();
 
 		vertexConsumer
-				.vertex(matrices.peek().getModel(), 0.125f, .5f, 0.125f)
+				.vertex(matrices.peek().getModel(), 0.125f, .5625f + (entity.getLength()-1)*3/16f, 0.125f)
 				.color(1f, 1f, 1f, 1f)
 				.uv(potionSprite.getMinU(), potionSprite.getMinV())
 				.light(0,240)
