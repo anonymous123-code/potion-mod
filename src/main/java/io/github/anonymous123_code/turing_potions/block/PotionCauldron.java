@@ -10,6 +10,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
@@ -63,15 +65,20 @@ public class PotionCauldron extends LeveledCauldronBlock implements BlockEntityP
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
 		PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE).orElseThrow();
 		if (blockEntity.getTemperature() >= 32000) {
-			if (random.nextInt(3) == 0) world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+			if (random.nextInt(3) == 0) doBubbleEffect(world, pos, random, blockEntity);
 		}
 		if (blockEntity.getTemperature() >= 48000) {
-			if (random.nextBoolean()) world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+			if (random.nextBoolean()) doBubbleEffect(world, pos, random, blockEntity);
 		}
 		if (blockEntity.getTemperature() >= 72000) {
-			world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/4, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+			doBubbleEffect(world, pos, random, blockEntity);
 			if (random.nextBoolean()) world.addImportantParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
 		}
+	}
+
+	private void doBubbleEffect(World world, BlockPos pos, RandomGenerator random, PotionCauldronBlockEntity blockEntity) {
+		world.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX()+0.25+random.nextFloat()/2, pos.getY()+.5625f + (blockEntity.getLength()-1)*3/16f+random.nextFloat()/8, pos.getZ()+0.25+random.nextFloat()/2, 0,0,0);
+		world.playSound(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 3 + 2 * random.nextFloat(), 0.9f + 0.2f * random.nextFloat(), true);
 	}
 
 	@Override
