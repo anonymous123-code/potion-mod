@@ -106,7 +106,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 			be.takeTop();
 			if (world instanceof ServerWorld) {
 				try {
-					((ServerWorld) world).spawnParticles(ParticleTypes.DUST.getParametersFactory().read(ParticleTypes.DUST, new StringReader(" 0.8 0.5 1.0 1.5")), pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 3, 0.2, 0.2, 0.2, 1);
+					((ServerWorld) world).spawnParticles(ParticleTypes.DUST.getParametersFactory().read(ParticleTypes.DUST, new StringReader(" 0.8 0.5 1.0 1.5")), pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 3, 0.05, 0.05, 0.2, 1);
 				} catch (CommandSyntaxException e) {
 					e.printStackTrace();
 					throw new AssertionError();
