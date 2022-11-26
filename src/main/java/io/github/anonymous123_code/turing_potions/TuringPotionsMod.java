@@ -14,10 +14,12 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.block.entity.api.QuiltBlockEntityTypeBuilder;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment;
@@ -35,6 +37,9 @@ public class TuringPotionsMod implements ModInitializer {
 
 	public static RegistryEntryAttachment<Block, Integer> heatRateRegistryAttachment;
 	public static RegistryEntryAttachment<Block, Integer> heatCapRegistryAttachment;
+
+	public static Identifier POTION_CAULDRON_EVAPORATE_SOUND_ID;
+	public static SoundEvent POTION_CAULDRON_EVAPORATE_SOUND_EVENT = new SoundEvent(POTION_CAULDRON_EVAPORATE_SOUND_ID);
 
 	@Override
 	public void onInitialize(ModContainer mod) {
@@ -64,7 +69,12 @@ public class TuringPotionsMod implements ModInitializer {
 				.side(RegistryEntryAttachment.Side.SERVER)
 				.build();
 
+		POTION_CAULDRON_EVAPORATE_SOUND_ID = new Identifier(mod.metadata().id(), "block.potion_cauldron.evaporate");
+		POTION_CAULDRON_EVAPORATE_SOUND_EVENT = new SoundEvent(POTION_CAULDRON_EVAPORATE_SOUND_ID);
+
+		Registry.register(Registry.SOUND_EVENT, POTION_CAULDRON_EVAPORATE_SOUND_ID, POTION_CAULDRON_EVAPORATE_SOUND_EVENT);
+
 		Registry.register(Registry.BLOCK, new Identifier(mod.metadata().id(), "potion_cauldron"), POTION_CAULDRON_BLOCK);
-		POTION_CAULDRON_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(mod.metadata().id(), "potion_cauldron"), FabricBlockEntityTypeBuilder.create(PotionCauldronBlockEntity::new, POTION_CAULDRON_BLOCK).build(null));
+		POTION_CAULDRON_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(mod.metadata().id(), "potion_cauldron"), QuiltBlockEntityTypeBuilder.create(PotionCauldronBlockEntity::new, POTION_CAULDRON_BLOCK).build(null));
 	}
 }

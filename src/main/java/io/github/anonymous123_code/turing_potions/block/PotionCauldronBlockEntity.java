@@ -16,6 +16,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -112,6 +113,9 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 					throw new AssertionError();
 				}
 			}
+
+			world.playSound(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f, TuringPotionsMod.POTION_CAULDRON_EVAPORATE_SOUND_EVENT, SoundCategory.BLOCKS, 1, 1, true);
+
 			if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
 				world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
 			} else {
