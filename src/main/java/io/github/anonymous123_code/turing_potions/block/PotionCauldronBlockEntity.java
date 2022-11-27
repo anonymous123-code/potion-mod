@@ -3,6 +3,7 @@ package io.github.anonymous123_code.turing_potions.block;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
+import io.github.anonymous123_code.turing_potions.sound.TuringPotionsSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,7 +32,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 	private int temperature;
 	private final int MAX_STACK_LENGTH = LeveledCauldronBlock.MAX_FILL_LEVEL;
 	public PotionCauldronBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
+		super(TuringPotionsBlocks.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
 	}
 
 	public NbtCompound takeTop() {
@@ -114,7 +115,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 				}
 			}
 
-			world.playSound(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f, TuringPotionsMod.POTION_CAULDRON_EVAPORATE_SOUND_EVENT, SoundCategory.BLOCKS, 1, 1, true);
+			world.playSound(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f, TuringPotionsSoundEvents.POTION_CAULDRON_EVAPORATE, SoundCategory.BLOCKS, 1, 1, true);
 
 			if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
 				world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));

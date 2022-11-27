@@ -7,18 +7,9 @@ import net.minecraft.util.Identifier;
  * @author anonymous123-code
  */
 public class VoidDataFactory extends DataFactory<Object> {
-	private static VoidDataFactory INSTANCE = null;
 
-	public VoidDataFactory(Identifier identifier) {
+	VoidDataFactory(Identifier identifier) {
 		super(identifier);
-	}
-
-	public static void setUp(Identifier identifier) {
-		INSTANCE = new VoidDataFactory(identifier);
-	}
-
-	public static VoidDataFactory getInstance() {
-		return INSTANCE;
 	}
 
 	@Override
