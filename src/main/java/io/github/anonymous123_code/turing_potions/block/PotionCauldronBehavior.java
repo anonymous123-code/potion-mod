@@ -1,7 +1,7 @@
 package io.github.anonymous123_code.turing_potions.block;
 
-import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import io.github.anonymous123_code.turing_potions.item.PotionItem;
+import io.github.anonymous123_code.turing_potions.item.TuringPotionsItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -42,14 +42,14 @@ public class PotionCauldronBehavior {
 						player,
 						hand,
 						stack,
-						new ItemStack(TuringPotionsMod.POTION_ITEM),
+						new ItemStack(TuringPotionsItems.POTION),
 						statex -> statex.get(LeveledCauldronBlock.LEVEL) > 0,
 						SoundEvents.ITEM_BOTTLE_FILL
 				)
 		);
-		POTION_CAULDRON_BEHAVIOR.put(TuringPotionsMod.POTION_ITEM, PotionCauldronBehavior::emptyPotionOnCauldron);
+		POTION_CAULDRON_BEHAVIOR.put(TuringPotionsItems.POTION, PotionCauldronBehavior::emptyPotionOnCauldron);
 
-		CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.put(TuringPotionsMod.POTION_ITEM, PotionCauldronBehavior::emptyPotionOnEmptyCauldron);
+		CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.put(TuringPotionsItems.POTION, PotionCauldronBehavior::emptyPotionOnEmptyCauldron);
 	}
 
 	static ActionResult takeFromCauldron(
@@ -69,7 +69,7 @@ public class PotionCauldronBehavior {
 			if (!world.isClient) {
 				Item item = stack.getItem();
 
-				output.getOrCreateNbt().put("Potion", world.getBlockEntity(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get().takeTop());
+				output.getOrCreateNbt().put("Potion", world.getBlockEntity(pos, TuringPotionsBlocks.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get().takeTop());
 				player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, output));
 
 				player.incrementStat(Stats.USE_CAULDRON);
@@ -105,9 +105,9 @@ public class PotionCauldronBehavior {
 			player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
 			player.incrementStat(Stats.USE_CAULDRON);
 			player.incrementStat(Stats.USED.getOrCreateStat(item));
-			world.setBlockState(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK.getDefaultState());
+			world.setBlockState(pos, TuringPotionsBlocks.POTION_CAULDRON.getDefaultState());
 
-			PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get();
+			PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsBlocks.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get();
 
 			blockEntity.push(stack.getNbt().getCompound("Potion"));
 
@@ -133,7 +133,7 @@ public class PotionCauldronBehavior {
 
 
 		if (!world.isClient) {
-			PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get();
+			PotionCauldronBlockEntity blockEntity = world.getBlockEntity(pos, TuringPotionsBlocks.POTION_CAULDRON_BLOCK_ENTITY_TYPE).get();
 			if(blockEntity.tryPush(stack.getNbt().getCompound("Potion"))) {
 				player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
 				player.incrementStat(Stats.USE_CAULDRON);

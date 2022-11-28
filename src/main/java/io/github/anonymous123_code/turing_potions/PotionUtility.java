@@ -5,7 +5,7 @@ import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecuting
 import io.github.anonymous123_code.turing_potions.api.operator.Operator;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorRegistry;
 import io.github.anonymous123_code.turing_potions.api.operator.RawArgumentOperator;
-import io.github.anonymous123_code.turing_potions.data_type.VoidDataFactory;
+import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
@@ -29,7 +29,7 @@ public class PotionUtility {
 			return ((RawArgumentOperator) operator).getResult(potion.getList("parameters", NbtElement.COMPOUND_TYPE));
 		} else {
 			// This should never happen, sealed is used
-			return VoidDataFactory.getInstance().create(null);
+			return TuringPotionsDataFactories.VOID.create(null);
 		}
 	}
 }

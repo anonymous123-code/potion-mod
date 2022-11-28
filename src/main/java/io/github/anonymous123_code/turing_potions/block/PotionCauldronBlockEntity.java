@@ -1,6 +1,9 @@
 package io.github.anonymous123_code.turing_potions.block;
 
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
+import io.github.anonymous123_code.turing_potions.sound.TuringPotionsSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,10 +12,17 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import net.minecraft.state.property.Properties;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author anonymous123-code
@@ -22,7 +32,7 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 	private int temperature;
 	private final int MAX_STACK_LENGTH = LeveledCauldronBlock.MAX_FILL_LEVEL;
 	public PotionCauldronBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(TuringPotionsMod.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
+		super(TuringPotionsBlocks.POTION_CAULDRON_BLOCK_ENTITY_TYPE, blockPos, blockState);
 	}
 
 	public NbtCompound takeTop() {
@@ -96,6 +106,17 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 			}
 		} else if (be.getTemperature() > 96000) {
 			be.takeTop();
+			if (world instanceof ServerWorld) {
+				try {
+					((ServerWorld) world).spawnParticles(ParticleTypes.DUST.getParametersFactory().read(ParticleTypes.DUST, new StringReader(" 0.8 0.5 1.0 1.5")), pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 3, 0.05, 0.05, 0.2, 1);
+				} catch (CommandSyntaxException e) {
+					e.printStackTrace();
+					throw new AssertionError();
+				}
+			}
+
+			world.playSound(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f, TuringPotionsSoundEvents.POTION_CAULDRON_EVAPORATE, SoundCategory.BLOCKS, 1, 1, true);
+
 			if (state.get(LeveledCauldronBlock.LEVEL) > 1) {
 				world.setBlockState(pos, state.with(LeveledCauldronBlock.LEVEL, state.get(LeveledCauldronBlock.LEVEL) - 1));
 			} else {
@@ -108,6 +129,17 @@ public class PotionCauldronBlockEntity extends BlockEntity {
 	public void writeNbt(NbtCompound nbt) {
 		nbt.put("Potions", potionStack.copy());
 		nbt.putInt("Temperature", temperature);
+	}
+
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.of(this);
+	}
+
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		return this.toNbt();
 	}
 
 	@Override

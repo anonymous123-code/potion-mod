@@ -29,9 +29,9 @@ public class EvaluationOperator extends ArgumentExecutingOperator {
 				for (NbtElement element : ((PotionData) param).getValue()) {
 					resultNested.add(PotionUtility.evaluatePotion((NbtCompound) element, 1));
 				}
-				result.add(ListDataFactory.getInstance().create(resultNested));
+				result.add(TuringPotionsDataFactories.LIST.create(resultNested));
 			} else {
-				result.add(VoidDataFactory.getInstance().create(null));
+				result.add(TuringPotionsDataFactories.VOID.create(null));
 			}
 		}
 		if (result.size() == 1) {
@@ -45,6 +45,6 @@ public class EvaluationOperator extends ArgumentExecutingOperator {
 				return potentialResult;
 			}
 		}
-		return ListDataFactory.getInstance().create(result);
+		return TuringPotionsDataFactories.LIST.create(result);
 	}
 }

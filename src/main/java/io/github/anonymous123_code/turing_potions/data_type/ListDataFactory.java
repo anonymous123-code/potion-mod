@@ -10,19 +10,10 @@ import java.util.List;
  * @author anonymous123-code
  */
 public class ListDataFactory extends DataFactory<List<Data<?>>> {
-	private static ListDataFactory INSTANCE = null;
-
-	private ListDataFactory(Identifier identifier) {
+	ListDataFactory(Identifier identifier) {
 		super(identifier);
 	}
 
-	public static void setUp(Identifier identifier) {
-		INSTANCE = new ListDataFactory(identifier);
-	}
-
-	public static ListDataFactory getInstance() {
-		return INSTANCE;
-	}
 	@Override
 	public Data<List<Data<?>>> create(List<Data<?>> param) {
 		return new ListData(this.getIdentifier(), param);

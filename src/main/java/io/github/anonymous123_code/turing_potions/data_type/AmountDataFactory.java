@@ -7,18 +7,9 @@ import net.minecraft.util.Identifier;
  * @author anonymous123-code
  */
 public class AmountDataFactory extends DataFactory<Double> {
-	private static AmountDataFactory INSTANCE = null;
 
-	private AmountDataFactory(Identifier identifier) {
+	AmountDataFactory(Identifier identifier) {
 		super(identifier);
-	}
-
-	public static void setUp(Identifier identifier) {
-		INSTANCE = new AmountDataFactory(identifier);
-	}
-
-	public static AmountDataFactory getInstance() {
-		return INSTANCE;
 	}
 
 	@Override

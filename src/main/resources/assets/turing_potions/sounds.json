@@ -1,0 +1,8 @@
+{
+  "block.potion_cauldron.evaporate": {
+    "subtitle": "subtitles.turing_potions.block.potion_cauldron.evaporate",
+    "sounds": [
+      "random/fizz"
+    ]
+  }
+}
