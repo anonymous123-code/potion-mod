@@ -1,0 +1,41 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "io.github.anonymous123_code",
+		"id": "turing_potions_test",
+		"version": "${version}",
+		"metadata": {
+			"name": "Turing Potions Testmod",
+			"description": "This is a test mod and shouldn't run in an user's environment",
+			"license": "LGPL-2.1-only",
+			"contributors": {
+				"anonymous123-code": "Owner"
+			},
+			"icon": "assets/turing_potions/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"fabric-gametest": [
+				"io.github.anonymous123_code.turing_potions.test.TuringPotionsTests"
+			]
+		},
+		"depends": [
+			{
+				"id": "turing_potions",
+				"versions": "*"
+			},
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.17.1-beta.6"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=2.0.0-beta.9+0.58.0-1.19"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.19"
+			}
+		]
+	}
+}
