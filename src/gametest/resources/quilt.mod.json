@@ -11,12 +11,12 @@
 			"contributors": {
 				"anonymous123-code": "Owner"
 			},
-			"icon": "assets/turing_potions/icon.png"
+			"icon": "assets/turing_potions_test/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
 			"fabric-gametest": [
-				"io.github.anonymous123_code.turing_potions.test.TuringPotionsTests"
+				"io.github.anonymous123_code.turing_potions_test.TuringPotionsTests"
 			]
 		},
 		"depends": [
