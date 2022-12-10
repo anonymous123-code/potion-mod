@@ -61,6 +61,35 @@ jar {
 	}
 }
 
+sourceSets {
+	gametest {
+		compileClasspath += sourceSets.main.compileClasspath
+		runtimeClasspath += sourceSets.main.runtimeClasspath
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
+}
+
+loom {
+	runs {
+		gametest {
+			server()
+			name = "Game Test"
+			vmArg "-Dfabric-api.gametest"
+			runDir "build/gametest"
+			source = project.sourceSets.gametest
+		}
+
+		gametestClient {
+			client()
+			name = "Game Test Client"
+			source = project.sourceSets.gametest
+		}
+	}
+}
+
+test.dependsOn runGametest
+
 // Configure the maven publication
 publishing {
 	publications {
