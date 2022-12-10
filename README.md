@@ -8,6 +8,17 @@ These have a low concentration of the elements.
 While the vanilla potions are primitive potions, too,
 there are other ingredients which might contain multiple different elements and are randomized between each world
 
+## Roadmap first "release"
+- [X] basic potion evaluation
+- [X] brewing
+- [ ] add some basic actions:
+  - [ ] vanilla potion invocation
+  - [ ] velocity manipulation
+  - [ ] print to chat
+- [ ] storing `store`d data persistently
+- [ ] non-instant potions in nbt and tick
+- [ ] non-instant custom effects in inventory
+- [ ] make base potions obtainable in survival
 
 ## Essentia
 
