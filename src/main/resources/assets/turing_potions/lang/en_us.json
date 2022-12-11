@@ -5,6 +5,7 @@
   "turing_potions.operator.turing_potions.escape": "Escape",
   "turing_potions.operator.turing_potions.evaluate": "Evaluate",
   "turing_potions.operator.turing_potions.state": "State",
+  "turing_potions.operator.turing_potions.chat": "Chat",
 
   "item.turing_potions.potion": "Mystic Potion",
 

@@ -14,7 +14,7 @@ there are other ingredients which might contain multiple different elements and 
 - [ ] add some basic actions:
   - [ ] vanilla potion invocation
   - [ ] velocity manipulation
-  - [ ] print to chat
+  - [X] print to chat
 - [ ] storing `store`d data persistently
 - [ ] non-instant potions in nbt and tick
 - [ ] non-instant custom effects in inventory
