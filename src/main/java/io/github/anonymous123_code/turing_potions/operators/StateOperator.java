@@ -2,6 +2,7 @@ package io.github.anonymous123_code.turing_potions.operators;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
+import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
 import io.github.anonymous123_code.turing_potions.data_type.AmountData;
 import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
 import net.minecraft.util.Identifier;
@@ -20,22 +21,23 @@ public class StateOperator extends ArgumentExecutingOperator {
 	}
 
 	@Override
-	public Data<?> getResult(List<Data<?>> parameters) {
-		if (parameters.size() < 1) {
+	public Data<?> getResult(OperatorExecutionContext<List<Data<?>>> context) {
+		List<Data<?>> params = context.getParameter();
+		if (params.size() < 1) {
 			return TuringPotionsDataFactories.VOID.create(null);
 		}
-		if (!(parameters.get(0) instanceof AmountData)){
+		if (!(params.get(0) instanceof AmountData)){
 			return TuringPotionsDataFactories.VOID.create(null);
 		}
-		if (parameters.size() == 1) {
-				Data<?> result = storage.get(((AmountData) parameters.get(0)).getValue());
+		if (params.size() == 1) {
+				Data<?> result = storage.get(((AmountData) params.get(0)).getValue());
 				if (result == null) {
 					return TuringPotionsDataFactories.AMOUNT.create(0.);
 				}
 				return result;
-		} else if (parameters.size() == 2) {
-			storage.put(((AmountData) parameters.get(0)).getValue(), parameters.get(1));
-			return parameters.get(1);
+		} else if (params.size() == 2) {
+			storage.put(((AmountData) params.get(0)).getValue(), params.get(1));
+			return params.get(1);
 		} else {
 			return TuringPotionsDataFactories.VOID.create(null);
 		}

@@ -20,5 +20,5 @@ public abstract non-sealed class ArgumentExecutingOperator extends Operator<List
 		return this.identifier;
 	}
 
-	public abstract Data<?> getResult(List<Data<?>> parameters);
+	public abstract Data<?> getResult(OperatorExecutionContext<List<Data<?>>> context);
 }

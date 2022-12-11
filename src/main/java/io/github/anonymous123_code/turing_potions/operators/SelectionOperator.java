@@ -2,6 +2,7 @@ package io.github.anonymous123_code.turing_potions.operators;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
+import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
 import io.github.anonymous123_code.turing_potions.data_type.AmountData;
 import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
 import net.minecraft.util.Identifier;
@@ -17,14 +18,15 @@ public class SelectionOperator extends ArgumentExecutingOperator {
 	}
 
 	@Override
-	public Data<?> getResult(List<Data<?>> parameters) {
-		if (parameters.size() < 2 || !(parameters.get(0) instanceof AmountData)) {
+	public Data<?> getResult(OperatorExecutionContext<List<Data<?>>> context) {
+		List<Data<?>> params = context.getParameter();
+		if (params.size() < 2 || !(params.get(0) instanceof AmountData)) {
 			return TuringPotionsDataFactories.VOID.create(null);
 		} else {
-			return parameters.get((int) Math.max(
+			return params.get((int) Math.max(
 							Math.min(
-									((AmountData) parameters.get(0)).getValue() + 1,
-									parameters.size() - 1),
+									((AmountData) params.get(0)).getValue() + 1,
+									params.size() - 1),
 							1));
 		}
 	}

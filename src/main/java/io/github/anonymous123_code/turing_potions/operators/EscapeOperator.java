@@ -1,6 +1,7 @@
 package io.github.anonymous123_code.turing_potions.operators;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
+import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
 import io.github.anonymous123_code.turing_potions.api.operator.RawArgumentOperator;
 import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
 import net.minecraft.nbt.NbtList;
@@ -15,7 +16,7 @@ public class EscapeOperator extends RawArgumentOperator {
 	}
 
 	@Override
-	public Data<?> getResult(NbtList params) {
-		return TuringPotionsDataFactories.POTION.create(params);
+	public Data<?> getResult(OperatorExecutionContext<NbtList> context) {
+		return TuringPotionsDataFactories.POTION.create(context.getParameter());
 	}
 }

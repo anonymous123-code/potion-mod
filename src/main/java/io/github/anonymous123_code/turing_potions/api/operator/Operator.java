@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
  */
 public sealed abstract class Operator<B> permits ArgumentExecutingOperator, RawArgumentOperator{
 	protected abstract Identifier getIdentifier();
-	protected abstract Data<?> getResult(B params);
+	protected abstract Data<?> getResult(OperatorExecutionContext<B> params);
 	public MutableText getTranslatableText(){
 		return Text.translatable("turing_potions.operator." + getIdentifier().getNamespace() + "." + String.join(".", getIdentifier().getPath().split("/")));
 	}

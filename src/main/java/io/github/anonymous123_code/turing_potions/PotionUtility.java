@@ -1,10 +1,7 @@
 package io.github.anonymous123_code.turing_potions;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
-import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
-import io.github.anonymous123_code.turing_potions.api.operator.Operator;
-import io.github.anonymous123_code.turing_potions.api.operator.OperatorRegistry;
-import io.github.anonymous123_code.turing_potions.api.operator.RawArgumentOperator;
+import io.github.anonymous123_code.turing_potions.api.operator.*;
 import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -17,16 +14,26 @@ import java.util.List;
  * @author anonymous123-code
  */
 public class PotionUtility {
-	public static Data<?> evaluatePotion(NbtCompound potion, int rec_depth) {
+	public static Data<?> evaluatePotion(NbtCompound potion, OperatorExecutionContext<?> context) {
+		// get the operator of the top-level potion
 		Operator<?> operator = OperatorRegistry.get(new Identifier(potion.getString("operator")));
+
 		if (operator instanceof ArgumentExecutingOperator) {
+
+			// retrieve parameters by evaluating all child potions recursively
 			List<Data<?>> params = new ArrayList<>();
 			for (NbtElement element : potion.getList("parameters", NbtElement.COMPOUND_TYPE)) {
-				params.add(evaluatePotion((NbtCompound) element, rec_depth + 1));
+				params.add(evaluatePotion((NbtCompound) element, context.withAddedRecursionDepth(1)));
 			}
-			return ((ArgumentExecutingOperator) operator).getResult(params);
+
+			// run main potion with parameters and return result
+			return ((ArgumentExecutingOperator) operator).getResult(context.with(params));
+
 		} else if (operator instanceof RawArgumentOperator) {
-			return ((RawArgumentOperator) operator).getResult(potion.getList("parameters", NbtElement.COMPOUND_TYPE));
+
+			// run main potion with raw parameter and return result
+			return ((RawArgumentOperator) operator).getResult(context.with(potion.getList("parameters", NbtElement.COMPOUND_TYPE)));
+
 		} else {
 			// This should never happen, sealed is used
 			return TuringPotionsDataFactories.VOID.create(null);

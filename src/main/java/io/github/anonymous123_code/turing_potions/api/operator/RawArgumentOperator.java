@@ -21,5 +21,5 @@ public abstract non-sealed class RawArgumentOperator extends Operator<NbtList> {
 	}
 
 	@Override
-	public abstract Data<?> getResult(NbtList params);
+	public abstract Data<?> getResult(OperatorExecutionContext<NbtList> params);
 }
