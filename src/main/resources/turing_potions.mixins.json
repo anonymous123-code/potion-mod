@@ -4,6 +4,7 @@
   "package": "io.github.anonymous123_code.turing_potions.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LivingEntityMixin"
   ],
   "client": [
     "PotionUtilAccessor"

@@ -1,9 +1,9 @@
 package io.github.anonymous123_code.turing_potions.potion.operators;
 
-import io.github.anonymous123_code.turing_potions.PotionUtility;
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
+import io.github.anonymous123_code.turing_potions.potion.PotionEvaluator;
 import io.github.anonymous123_code.turing_potions.potion.data_type.ListData;
 import io.github.anonymous123_code.turing_potions.potion.data_type.PotionData;
 import io.github.anonymous123_code.turing_potions.potion.data_type.TuringPotionsDataFactories;
@@ -31,7 +31,7 @@ public class EvaluationOperator extends ArgumentExecutingOperator {
 			if (param instanceof PotionData) {
 				List<Data<?>> resultNested = new ArrayList<>();
 				for (NbtElement element : ((PotionData) param).getValue()) {
-					resultNested.add(PotionUtility.evaluatePotion((NbtCompound) element, context.withAddedRecursionDepth(1)));
+					resultNested.add(PotionEvaluator.evaluatePotion((NbtCompound) element, context.withAddedRecursionDepth(1)));
 				}
 				result.add(TuringPotionsDataFactories.LIST.create(resultNested));
 			} else {

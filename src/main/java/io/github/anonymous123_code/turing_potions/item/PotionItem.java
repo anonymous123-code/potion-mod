@@ -1,9 +1,6 @@
 package io.github.anonymous123_code.turing_potions.item;
 
-import io.github.anonymous123_code.turing_potions.PotionUtility;
-import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
-import io.github.anonymous123_code.turing_potions.api.data_type.Data;
-import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
+import io.github.anonymous123_code.turing_potions.access.LivingEntityMixinAccess;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorRegistry;
 import io.github.anonymous123_code.turing_potions.mixin.PotionUtilAccessor;
 import net.minecraft.advancement.criterion.Criteria;
@@ -54,8 +51,7 @@ public class PotionItem extends net.minecraft.item.PotionItem {
 		if (!world.isClient && stack.hasNbt()) {
 			NbtCompound compound = stack.getNbt().getCompound("Potion");
 			if (compound != null) {
-				Data<?> result = PotionUtility.evaluatePotion(compound, new OperatorExecutionContext<>(world, user, null));
-				TuringPotionsMod.LOGGER.info(result.toText().getString());
+				((LivingEntityMixinAccess) user).getTuringPotions$activePotions().add(compound);
 			}
 		}
 
