@@ -88,6 +88,10 @@ loom {
 	}
 }
 
+runClient {
+	// jvmArgs("-Dmixin.debug.export=true")
+}
+
 test.dependsOn runGametest
 
 // Configure the maven publication

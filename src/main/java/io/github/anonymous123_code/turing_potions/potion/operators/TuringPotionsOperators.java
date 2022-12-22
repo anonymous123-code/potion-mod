@@ -11,6 +11,7 @@ public class TuringPotionsOperators {
 	public static final EvaluationOperator EVALUATE = new EvaluationOperator(TuringPotionsMod.identifier("evaluate"));
 	public static final StateOperator STATE = new StateOperator(TuringPotionsMod.identifier("state"));
 	public static final ChatMessageOperator CHAT = new ChatMessageOperator(TuringPotionsMod.identifier("chat"));
+	public static final VelocityOperator VELOCITY = new VelocityOperator(TuringPotionsMod.identifier("velocity"));
 
 	public static void register() {
 		OperatorRegistry.register(AMOUNT);
@@ -20,5 +21,6 @@ public class TuringPotionsOperators {
 		OperatorRegistry.register(EVALUATE);
 		OperatorRegistry.register(STATE);
 		OperatorRegistry.register(CHAT);
+		OperatorRegistry.register(VELOCITY);
 	}
 }

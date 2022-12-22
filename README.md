@@ -13,10 +13,14 @@ there are other ingredients which might contain multiple different elements and 
 - [X] brewing
 - [ ] add some basic actions:
   - [ ] vanilla potion invocation
-  - [ ] velocity manipulation
+  - [X] velocity manipulation
   - [X] print to chat
 - [ ] storing `store`d data persistently
-- [ ] non-instant potions in nbt and tick
+- [ ] non-instant potions in
+  - [ ] nbt
+  - [ ] tick
+    - [X] stage one: List in LivingEntity, invocation in tick entrypoint based on that
+    - [ ] stage two: add initial time limit system
 - [ ] non-instant custom effects in inventory
 - [ ] make base potions obtainable in survival
 
