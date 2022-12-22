@@ -6,6 +6,8 @@
   "turing_potions.operator.turing_potions.evaluate": "Evaluate",
   "turing_potions.operator.turing_potions.state": "State",
   "turing_potions.operator.turing_potions.chat": "Chat",
+  "turing_potions.operator.turing_potions.velocity": "Velocity",
+  "turing_potions.operator.turing_potions.list": "List",
 
   "item.turing_potions.potion": "Mystic Potion",
 

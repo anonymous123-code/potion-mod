@@ -90,6 +90,9 @@ Implemented:
  - void: execute with []
  - Amount: returns `1` if no param, else `sum of all params` [X]
  - Negativity: returns `-1` if no param, `-param` if 1 param, else `first param - sum of all other params` [X]
+ - List: combines all parameters into a list
+ - Velocity: Ability to read and add velocity
+ - Chat: prints the parameter to the evaluating player's chat
 
 ## Research
 

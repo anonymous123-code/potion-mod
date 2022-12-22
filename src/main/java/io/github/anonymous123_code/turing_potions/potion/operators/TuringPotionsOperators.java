@@ -12,6 +12,7 @@ public class TuringPotionsOperators {
 	public static final StateOperator STATE = new StateOperator(TuringPotionsMod.identifier("state"));
 	public static final ChatMessageOperator CHAT = new ChatMessageOperator(TuringPotionsMod.identifier("chat"));
 	public static final VelocityOperator VELOCITY = new VelocityOperator(TuringPotionsMod.identifier("velocity"));
+	public static final ListOperator LIST = new ListOperator(TuringPotionsMod.identifier("list"));
 
 	public static void register() {
 		OperatorRegistry.register(AMOUNT);
@@ -22,5 +23,6 @@ public class TuringPotionsOperators {
 		OperatorRegistry.register(STATE);
 		OperatorRegistry.register(CHAT);
 		OperatorRegistry.register(VELOCITY);
+		OperatorRegistry.register(LIST);
 	}
 }
