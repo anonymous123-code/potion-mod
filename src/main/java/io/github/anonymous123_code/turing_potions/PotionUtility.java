@@ -2,7 +2,7 @@ package io.github.anonymous123_code.turing_potions;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.*;
-import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
+import io.github.anonymous123_code.turing_potions.potion.data_type.TuringPotionsDataFactories;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;

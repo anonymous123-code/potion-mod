@@ -1,4 +1,4 @@
-package io.github.anonymous123_code.turing_potions.data_type;
+package io.github.anonymous123_code.turing_potions.potion.data_type;
 
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 

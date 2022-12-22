@@ -2,7 +2,7 @@ package io.github.anonymous123_code.turing_potions;
 
 import io.github.anonymous123_code.turing_potions.block.TuringPotionsBlocks;
 import io.github.anonymous123_code.turing_potions.item.TuringPotionsItems;
-import io.github.anonymous123_code.turing_potions.operators.*;
+import io.github.anonymous123_code.turing_potions.potion.operators.TuringPotionsOperators;
 import io.github.anonymous123_code.turing_potions.sound.TuringPotionsSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;

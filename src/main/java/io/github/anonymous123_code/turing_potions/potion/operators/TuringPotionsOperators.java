@@ -1,4 +1,4 @@
-package io.github.anonymous123_code.turing_potions.operators;
+package io.github.anonymous123_code.turing_potions.potion.operators;
 
 import io.github.anonymous123_code.turing_potions.TuringPotionsMod;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorRegistry;

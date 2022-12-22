@@ -1,10 +1,13 @@
-package io.github.anonymous123_code.turing_potions.operators;
+package io.github.anonymous123_code.turing_potions.potion.operators;
 
 import io.github.anonymous123_code.turing_potions.PotionUtility;
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
-import io.github.anonymous123_code.turing_potions.data_type.*;
+import io.github.anonymous123_code.turing_potions.potion.data_type.ListData;
+import io.github.anonymous123_code.turing_potions.potion.data_type.PotionData;
+import io.github.anonymous123_code.turing_potions.potion.data_type.TuringPotionsDataFactories;
+import io.github.anonymous123_code.turing_potions.potion.data_type.VoidData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;

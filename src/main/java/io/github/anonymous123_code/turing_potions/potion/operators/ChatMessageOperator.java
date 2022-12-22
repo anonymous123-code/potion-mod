@@ -1,9 +1,9 @@
-package io.github.anonymous123_code.turing_potions.operators;
+package io.github.anonymous123_code.turing_potions.potion.operators;
 
 import io.github.anonymous123_code.turing_potions.api.data_type.Data;
 import io.github.anonymous123_code.turing_potions.api.operator.ArgumentExecutingOperator;
 import io.github.anonymous123_code.turing_potions.api.operator.OperatorExecutionContext;
-import io.github.anonymous123_code.turing_potions.data_type.TuringPotionsDataFactories;
+import io.github.anonymous123_code.turing_potions.potion.data_type.TuringPotionsDataFactories;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
